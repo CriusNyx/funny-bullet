@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://eg80xuqocy0v"]
+
+[ext_resource type="Script" uid="uid://bp38ix1sgs77h" path="res://scripts/bullet/Bullet.cs" id="1_lv25w"]
+[ext_resource type="Texture2D" uid="uid://b0w4ibaypabq3" path="res://textures/bullets/enemy_bullet_1.png" id="2_lv25w"]
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_lv25w")
+metadata/_custom_type_script = "uid://bp38ix1sgs77h"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("2_lv25w")

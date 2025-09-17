@@ -1,0 +1,46 @@
+using Godot;
+using static Godot.GD;
+
+[GlobalClass]
+public partial class Bullet : Node3D
+{
+  double timeAlive;
+
+  public BulletSpawn spawn;
+
+  public override void _Ready()
+  {
+    base._Ready();
+    Position = spawn.position.To3();
+  }
+
+  public override void _Process(double delta)
+  {
+    base._Process(delta);
+
+    var direction = Vector3.Right.Rotated(Vector3.Back, Mathf.DegToRad(spawn.angle));
+    var offset = direction * spawn.speed * (float)delta;
+    Position += offset;
+
+    Quaternion = new Quaternion()
+
+    timeAlive += delta;
+
+    if (timeAlive > spawn.lifetime)
+    {
+      Free();
+    }
+  }
+
+  private Bullet WithSpawn(BulletSpawn spawn)
+  {
+    this.spawn = spawn.Clone(angle: spawn.angle);
+    return this;
+  }
+
+  public static Bullet Spawn(BulletSpawn spawn, PackedScene prefab = null)
+  {
+    var instance = prefab?.Instantiate<Bullet>() ?? new Bullet();
+    return instance.WithParent(GameInstance.Instance).WithSpawn(spawn).WithName("Bullet");
+  }
+}
