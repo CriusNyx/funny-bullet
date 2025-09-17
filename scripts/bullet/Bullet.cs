@@ -5,8 +5,10 @@ using static Godot.GD;
 public partial class Bullet : Node3D
 {
   double timeAlive;
-
   public BulletSpawn spawn;
+
+  [Export(PropertyHint.Flags)]
+  public DamageFiler damageSource;
 
   public override void _Ready()
   {
@@ -21,8 +23,6 @@ public partial class Bullet : Node3D
     var direction = Vector3.Right.Rotated(Vector3.Back, Mathf.DegToRad(spawn.angle));
     var offset = direction * spawn.speed * (float)delta;
     Position += offset;
-
-    Quaternion = new Quaternion()
 
     timeAlive += delta;
 
