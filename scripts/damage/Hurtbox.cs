@@ -1,4 +1,5 @@
 using System;
 using Godot;
 
-public partial class Hurtbox : Node3D { }
+[GlobalClass]
+public partial class Hurtbox : CharacterBody3D { }
