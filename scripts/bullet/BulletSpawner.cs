@@ -24,7 +24,7 @@ public partial class BulletSpawner : Node3D
 
     if (spawns == null)
     {
-      Free();
+      QueueFree();
     }
 
     time += delta;

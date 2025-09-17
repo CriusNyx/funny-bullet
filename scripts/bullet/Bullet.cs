@@ -2,13 +2,16 @@ using Godot;
 using static Godot.GD;
 
 [GlobalClass]
-public partial class Bullet : Node3D
+public partial class Bullet : Node3D, IHandleHitboxEvents
 {
   double timeAlive;
   public BulletSpawn spawn;
 
   [Export(PropertyHint.Flags)]
   public DamageFiler damageSource;
+
+  [Export]
+  public bool destroyOnHit;
 
   public override void _Ready()
   {
@@ -28,7 +31,7 @@ public partial class Bullet : Node3D
 
     if (timeAlive > spawn.lifetime)
     {
-      Free();
+      QueueFree();
     }
   }
 
@@ -42,5 +45,13 @@ public partial class Bullet : Node3D
   {
     var instance = prefab?.Instantiate<Bullet>() ?? new Bullet();
     return instance.WithParent(GameInstance.Instance).WithSpawn(spawn).WithName("Bullet");
+  }
+
+  public void OnHit(Hitbox hitbox, Hurtbox hurtbox)
+  {
+    if (destroyOnHit)
+    {
+      QueueFree();
+    }
   }
 }
