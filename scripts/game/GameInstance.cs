@@ -12,6 +12,5 @@ public partial class GameInstance : Node
     base._Ready();
     camera = this.AppendChild(new Camera3D())
       .WithTransform(Vector3.Back * GameStats.CAMERA_DISTANCE);
-    Print("Game Started");
   }
 }
