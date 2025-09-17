@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj1mf52p2vepd"]
+
+[ext_resource type="Script" uid="uid://sbken1o3ty2p" path="res://scripts/player/Player.cs" id="1_4dohe"]
+[ext_resource type="PackedScene" uid="uid://b87fyjbrisu4e" path="res://models/primitives/cube.blend" id="2_r66lb"]
+[ext_resource type="Script" uid="uid://kftrqwic5w1c" path="res://scripts/damage/Hurtbox.cs" id="3_r66lb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r66lb"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_4dohe")
+
+[node name="cube" parent="." instance=ExtResource("2_r66lb")]
+
+[node name="Hurtbox" type="CharacterBody3D" parent="."]
+script = ExtResource("3_r66lb")
+metadata/_custom_type_script = "uid://kftrqwic5w1c"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("SphereShape3D_r66lb")
