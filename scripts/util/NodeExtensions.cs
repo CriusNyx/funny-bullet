@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 public static class NodeExtensions
@@ -31,5 +32,45 @@ public static class NodeExtensions
   {
     node.Name = name;
     return node;
+  }
+
+  public static T GetParentOfType<T>(this Node node)
+    where T : GodotObject
+  {
+    if (node is T t)
+    {
+      return t;
+    }
+    return node.GetParent()?.GetParentOfType<T>();
+  }
+
+  public static IEnumerable<T> GetParentsOfType<T>(this Node node)
+  {
+    for (var self = node; self != null; self = self?.GetParent())
+    {
+      if (self is T t)
+      {
+        yield return t;
+      }
+    }
+  }
+
+  public static T GetChildOfType<T>(this Node node)
+  {
+    foreach (var child in node.GetChildren())
+    {
+      if (child is T t)
+      {
+        return t;
+      }
+    }
+    foreach (var child in node.GetChildren())
+    {
+      if (child.GetChildOfType<T>() is T t)
+      {
+        return t;
+      }
+    }
+    return default;
   }
 }

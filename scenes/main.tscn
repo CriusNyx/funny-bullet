@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://gf2egdtjvkn8"]
 
-[ext_resource type="PackedScene" uid="uid://dj1mf52p2vepd" path="res://prefabs/player.tscn" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://c0ar54a0equah" path="res://prefabs/player.tscn" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://mous1jph81xs" path="res://scripts/ai/AI.cs" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://eg80xuqocy0v" path="res://prefabs/bullet.tscn" id="4_jyhfs"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.6804504, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.77502906, -0.2903451, 0.56127506, -0.01718182, 0.87818754, 0.4780078, -0.631692, -0.38011363, 0.67563224, 10, 10, 10)
