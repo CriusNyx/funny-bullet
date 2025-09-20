@@ -29,5 +29,8 @@ public class InputFrame
     return new InputFrame(previous?.Current ?? InputPoll.Empty(), InputPoll.Current());
   }
 
-  
+  public static InputFrame Empty()
+  {
+    return new InputFrame(InputPoll.Empty(), InputPoll.Empty());
+  }
 }
