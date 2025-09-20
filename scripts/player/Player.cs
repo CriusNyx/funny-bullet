@@ -2,10 +2,11 @@ using Godot;
 using static GameStats;
 
 [GlobalClass]
-public partial class Player : Node3D, IHaveHealth, IHandleHurtboxEvents, IHandleDeath
+public partial class Player : Character, IHaveHealth, IHandleHurtboxEvents, IHandleDeath
 {
-  InputFrame input;
-  Health health;
+  [Export]
+  public int MyInt;
+  InputFrame input = InputFrame.Empty();
 
   public override void _Ready()
   {
@@ -28,7 +29,7 @@ public partial class Player : Node3D, IHaveHealth, IHandleHurtboxEvents, IHandle
 
   public void OnHurt(Hitbox hitbox, Hurtbox hurtbox)
   {
-    health.Hurt();
+    health?.Hurt();
   }
 
   public void OnDead(Health health)

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public static class NodeExtensions
@@ -34,7 +35,7 @@ public static class NodeExtensions
     return node;
   }
 
-  public static T GetParentOfType<T>(this Node node)
+  public static T? GetParentOfType<T>(this Node node)
     where T : GodotObject
   {
     if (node is T t)
@@ -55,7 +56,7 @@ public static class NodeExtensions
     }
   }
 
-  public static T GetChildOfType<T>(this Node node)
+  public static T? GetChildOfType<T>(this Node node)
   {
     foreach (var child in node.GetChildren())
     {
@@ -72,5 +73,23 @@ public static class NodeExtensions
       }
     }
     return default;
+  }
+
+  public static IEnumerable<T> GetChildrenOfType<T>(this Node node, bool recursive = true)
+  {
+    foreach (var child in node.GetChildren())
+    {
+      if (child is T t)
+      {
+        yield return t;
+      }
+      if (recursive)
+      {
+        foreach (var second in child.GetChildrenOfType<T>(recursive))
+        {
+          yield return second;
+        }
+      }
+    }
   }
 }

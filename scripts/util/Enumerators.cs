@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 public static class Enumerators
@@ -18,5 +19,11 @@ public static class Enumerators
     {
       yield return min + range * ((float)i / count - 1);
     }
+  }
+
+  public static IEnumerable ToEnumerable(this Action action)
+  {
+    action();
+    yield return null;
   }
 }
