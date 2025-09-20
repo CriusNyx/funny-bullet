@@ -47,7 +47,7 @@ Finishes when all of it's children have run and finished.
 
 ### Variables
 
-| | |
+| Variable | Description |
 | - | - |
 | delayPerSpawn | The amount of time to delay between each spawn |
 
@@ -60,7 +60,7 @@ finished.
 
 ### Variables
 
-| | |
+| Variable | Description |
 | - | - |
 | delayPerSpawn | The amount of time to delay between each concurrent spawn |
 
@@ -69,7 +69,7 @@ finished.
 Will delay by the amount of time specified, and then will run it's children. Finishes when all it's 
 children have finished.
 
-| | |
+| Variable | Description |
 | - | - |
 | delay | The amount of time to wait before it's children get spawned |
 
@@ -77,6 +77,6 @@ children have finished.
 
 Will spawn the specified prefab. Will finish when that prefab gets destroyed.
 
-| | |
+| Variable | Description |
 | - | - |
 | prefab | The prefab this will spawn |
