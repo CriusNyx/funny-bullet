@@ -13,7 +13,7 @@ public partial class GameInstance : Node
     Instance = this;
     base._Ready();
     Scheduler = new Scheduler();
-    Debugger = new Debugger().WithParent(this);
+    Debugger = new Debugger() { Name = "Debugger" }.WithParent(this);
     LevelInterpreter = new LevelInterpreter().WithParent(this);
 
     camera = this.AppendChild(new Camera3D())

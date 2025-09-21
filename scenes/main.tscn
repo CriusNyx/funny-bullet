@@ -1,13 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://gf2egdtjvkn8"]
+[gd_scene load_steps=11 format=3 uid="uid://gf2egdtjvkn8"]
 
 [ext_resource type="PackedScene" uid="uid://d3xoeumsfbykp" path="res://prefabs/player.tscn" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://mous1jph81xs" path="res://scripts/ai/AI.cs" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://eg80xuqocy0v" path="res://prefabs/bullet.tscn" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://bl53avsdsudbp" path="res://scripts/level/Level.cs" id="4_tbgi4"]
 [ext_resource type="Script" uid="uid://dngt7yt7w0eko" path="res://scripts/level/Concurrent.cs" id="5_o6xl0"]
-[ext_resource type="Script" uid="uid://cgwlfywdqr2af" path="res://scripts/level/Spawn.cs" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://d3tj2g83fnhgq" path="res://scripts/level/Spawn.cs" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://q7e5gfk4r5tx" path="res://scripts/level/Delay.cs" id="5_tipki"]
 [ext_resource type="PackedScene" uid="uid://dm6lgcowi1gnt" path="res://prefabs/debug_enemy.tscn" id="6_o6xl0"]
+[ext_resource type="Script" uid="uid://cpv2e6t5c4d0t" path="res://scripts/level/SpawnInfo.cs" id="8_85g3d"]
+
+[sub_resource type="Resource" id="Resource_choun"]
+script = ExtResource("8_85g3d")
+metadata/_custom_type_script = "uid://cpv2e6t5c4d0t"
 
 [node name="Node3D" type="Node3D"]
 
@@ -25,21 +30,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3199317, 0)
 script = ExtResource("4_tbgi4")
 metadata/_custom_type_script = "uid://bl53avsdsudbp"
 
-[node name="Wave1" type="Node" parent="Level"]
+[node name="Concurrent Wave1" type="Node" parent="Level"]
 script = ExtResource("5_o6xl0")
+delayPerSpawn = 1.0
 metadata/_custom_type_script = "uid://dngt7yt7w0eko"
 
-[node name="Spawn" type="Node" parent="Level/Wave1"]
+[node name="Spawn" type="Node" parent="Level/Concurrent Wave1"]
+script = ExtResource("5_tbgi4")
+prefab = ExtResource("6_o6xl0")
+spawnInfo = SubResource("Resource_choun")
+metadata/_custom_type_script = "uid://cgwlfywdqr2af"
+
+[node name="Spawn2" type="Node" parent="Level/Concurrent Wave1"]
 script = ExtResource("5_tbgi4")
 prefab = ExtResource("6_o6xl0")
 metadata/_custom_type_script = "uid://cgwlfywdqr2af"
 
-[node name="Spawn2" type="Node" parent="Level/Wave1"]
-script = ExtResource("5_tbgi4")
-prefab = ExtResource("6_o6xl0")
-metadata/_custom_type_script = "uid://cgwlfywdqr2af"
-
-[node name="Spawn3" type="Node" parent="Level/Wave1"]
+[node name="Spawn3" type="Node" parent="Level/Concurrent Wave1"]
 script = ExtResource("5_tbgi4")
 prefab = ExtResource("6_o6xl0")
 metadata/_custom_type_script = "uid://cgwlfywdqr2af"
@@ -49,25 +56,25 @@ script = ExtResource("5_tipki")
 delay = 4.0
 metadata/_custom_type_script = "uid://q7e5gfk4r5tx"
 
-[node name="Wave2" type="Node" parent="Level"]
+[node name="Concurrent Wave2" type="Node" parent="Level"]
 script = ExtResource("5_o6xl0")
 metadata/_custom_type_script = "uid://dngt7yt7w0eko"
 
-[node name="Spawn4" type="Node" parent="Level/Wave2"]
+[node name="Spawn4" type="Node" parent="Level/Concurrent Wave2"]
 script = ExtResource("5_tbgi4")
 prefab = ExtResource("6_o6xl0")
 metadata/_custom_type_script = "uid://cgwlfywdqr2af"
 
-[node name="Spawn5" type="Node" parent="Level/Wave2"]
+[node name="Spawn5" type="Node" parent="Level/Concurrent Wave2"]
 script = ExtResource("5_tbgi4")
 prefab = ExtResource("6_o6xl0")
 metadata/_custom_type_script = "uid://cgwlfywdqr2af"
 
-[node name="Wave3" type="Node" parent="Level"]
+[node name="Concurrent Wave3" type="Node" parent="Level"]
 script = ExtResource("5_o6xl0")
 metadata/_custom_type_script = "uid://dngt7yt7w0eko"
 
-[node name="Spawn6" type="Node" parent="Level/Wave3"]
+[node name="Spawn6" type="Node" parent="Level/Concurrent Wave3"]
 script = ExtResource("5_tbgi4")
 prefab = ExtResource("6_o6xl0")
 metadata/_custom_type_script = "uid://cgwlfywdqr2af"

@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 
 public class SequenceNode : InterpreterNode, DebugPrint
 {
-  int currentChildIndex = 0;
   float delayPerItem;
-  InterpreterNode? Current;
+  Queue<InterpreterNode> queue = new Queue<InterpreterNode>();
 
   public SequenceNode(string name, InterpreterNode[] children, float delayPerItem = 0)
     : base(name, children)
@@ -15,39 +13,26 @@ public class SequenceNode : InterpreterNode, DebugPrint
 
   protected override void _Start()
   {
-    Current = Children.FirstOrDefault();
-    Current?.Start();
+    foreach (var (child, index) in Children.WithIndex())
+    {
+      float delay = delayPerItem * index;
+      queue.Enqueue(delay == 0 ? child : new DelayNode("Delay", [child], delayPerItem));
+    }
+    if (queue.TryPeek(out var first))
+    {
+      first.Start();
+    }
     base._Start();
   }
 
   protected override LevelInterpreterResult _Update(double deltaTime)
   {
-    if (Current == null)
-    {
-      return LevelInterpreterResult.Done;
-    }
-    var result = Current.Update(deltaTime);
-    if (result == LevelInterpreterResult.Running)
-    {
-      return LevelInterpreterResult.Running;
-    }
-    else
-    {
-      currentChildIndex++;
-      Current = Children
-        .Safe(currentChildIndex)
-        .And((node) => delayPerItem != 0 ? new DelayNode("Delay", [node], delayPerItem) : node);
-      Current?.Start();
-      return _Update(deltaTime);
-    }
+    return RunSequential(queue, deltaTime);
   }
 
   public override IEnumerable<InterpreterNode> LiveChildren()
   {
-    if (Current != null)
-    {
-      yield return Current;
-    }
+    return queue;
   }
 
   public IEnumerable<(string, object)> EnumerateFields()

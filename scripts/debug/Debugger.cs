@@ -3,7 +3,7 @@ using Godot;
 [GlobalClass]
 public partial class Debugger : Node2D
 {
-  Label label;
+  RichTextLabel label;
 
   public static Debugger Instance => GameInstance.Instance.Debugger;
 
@@ -11,7 +11,12 @@ public partial class Debugger : Node2D
 
   public override void _Ready()
   {
-    label = new Label().WithParent(this);
+    label = new RichTextLabel()
+    {
+      FitContent = true,
+      AutowrapMode = TextServer.AutowrapMode.Off,
+      BbcodeEnabled = true,
+    }.WithParent(this);
     label.Text = "Foo";
   }
 

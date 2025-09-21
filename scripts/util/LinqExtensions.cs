@@ -64,4 +64,12 @@ public static class LinqExtensions
   {
     return values.Where(x => x != null) as IEnumerable<T>;
   }
+
+  public static void Foreach<T>(this IEnumerable<T> values, Action<T> action)
+  {
+    foreach (var value in values)
+    {
+      action(value);
+    }
+  }
 }
