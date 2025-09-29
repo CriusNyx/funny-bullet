@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b87fyjbrisu4e"
-path="res://.godot/imported/cube.blend-c4a7fe98087a6645462059657cb1bdd8.scn"
+path="res://.godot/imported/cube.blend-c04b9b69610d176e310f493c1008651a.scn"
 
 [deps]
 
-source_file="res://models/primitives/cube.blend"
-dest_files=["res://.godot/imported/cube.blend-c4a7fe98087a6645462059657cb1bdd8.scn"]
+source_file="res://resources/models/primitives/cube.blend"
+dest_files=["res://.godot/imported/cube.blend-c04b9b69610d176e310f493c1008651a.scn"]
 
 [params]
 

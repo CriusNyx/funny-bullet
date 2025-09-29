@@ -38,7 +38,7 @@ public partial class BulletSpawner : Node3D
     }
     if (!spawns.MoveNext())
     {
-      spawns = null;
+      spawns = null!;
       return false;
     }
     return true;

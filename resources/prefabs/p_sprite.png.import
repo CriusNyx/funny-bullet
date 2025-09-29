@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6cm5hbiko8q2"
-path.s3tc="res://.godot/imported/p_sprite.png-64c6f55541f825a78c8db4506991064b.s3tc.ctex"
+path.s3tc="res://.godot/imported/p_sprite.png-2dd42793c8e8b2e5dc43d49f83c6cfda.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://prefabs/p_sprite.png"
-dest_files=["res://.godot/imported/p_sprite.png-64c6f55541f825a78c8db4506991064b.s3tc.ctex"]
+source_file="res://resources/prefabs/p_sprite.png"
+dest_files=["res://.godot/imported/p_sprite.png-2dd42793c8e8b2e5dc43d49f83c6cfda.s3tc.ctex"]
 
 [params]
 

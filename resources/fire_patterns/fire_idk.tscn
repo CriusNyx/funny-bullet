@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://oa236rvwjfls"]
+
+[ext_resource type="Script" uid="uid://dwtm53sfeu3vr" path="res://scripts/behavious/AnimatedBehavior.cs" id="1_m51na"]
+
+[sub_resource type="Animation" id="Animation_sxlgk"]
+resource_name = "run"
+length = 10.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ShootAtPlayer"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8aka2"]
+_data = {
+&"start": SubResource("Animation_sxlgk")
+}
+
+[node name="FireIDK" type="Node"]
+script = ExtResource("1_m51na")
+metadata/_custom_type_script = "uid://dwtm53sfeu3vr"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8aka2")
+}

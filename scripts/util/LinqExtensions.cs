@@ -1,24 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 public static class LinqExtensions
 {
-  public static IEnumerable<T> If<T>(
-    this IEnumerable<T> source,
-    bool condition,
-    Func<IEnumerable<T>, IEnumerable<T>> func
-  )
-  {
-    if (condition)
-    {
-      return func(source);
-    }
-    return source;
-  }
-
   public static float? SafeMax<T>(this IEnumerable<T> source, Func<T, float> func)
   {
     try
@@ -107,5 +93,10 @@ public static class LinqExtensions
       done = !enumerators.Any(x => x != null);
       yield return null!;
     }
+  }
+
+  public static IEnumerable<T> Flatten<T>(this IEnumerable<IEnumerable<T>> source)
+  {
+    return source.SelectMany(x => x);
   }
 }

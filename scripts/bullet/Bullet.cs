@@ -1,5 +1,4 @@
 using Godot;
-using static Godot.GD;
 
 [GlobalClass]
 public partial class Bullet : Node3D, IHandleHitboxEvents

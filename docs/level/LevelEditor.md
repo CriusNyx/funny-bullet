@@ -5,12 +5,23 @@
 
 - [Docs](../Docs.md)
   - [Level Editor](../level/LevelEditor.md)
-    - [Level Events](../level/LevelEvents.md)
 
-# Level Editor
+# Levels
 
-The level system allows developers to create levels using a drag and drop node based system. Levels 
-are composed of Level Events that control the behavior of the level. Events can have children, and 
-will run until they've completed their task, and all of their children have completed their tasks.
+Levels are made out of various components. The most critical is the [Level](#level) component that runs it's children in sequence.
 
-For more information on levels events see [Level Events](./LevelEvents.md)
+# Components
+
+## Level
+
+The level component runs each of it's children in sequence
+
+## Wave
+
+The wave component looks for children that are sequences and runs them all at the same time.
+
+The wave component will finish and allow the next component to run.
+
+## Spawner
+
+Spawn the prefab with the specified parameters.

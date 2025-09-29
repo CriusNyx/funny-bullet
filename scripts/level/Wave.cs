@@ -12,7 +12,7 @@ public partial class Wave : LevelNode
     base.Start();
     foreach (var animationPlayer in this.GetChildrenOfType<AnimationPlayer>())
     {
-      animationPlayer.Play("run");
+      animationPlayer.Play(GameStats.START_ANIMATION_NAME);
     }
   }
 

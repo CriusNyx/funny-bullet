@@ -6,6 +6,9 @@ public partial class Spawner : Node3D
   [Export]
   PackedScene? prefab;
 
+  [Export]
+  PackedScene[] behaviors = [];
+
   public void Spawn()
   {
     if (prefab != null)
@@ -19,6 +22,14 @@ public partial class Spawner : Node3D
         var tracker = new Tracker();
         wave.TrackOne();
         instance.WithOnDeath((x) => wave.UntrackOne());
+      }
+
+      if (instance != null)
+      {
+        foreach (var behavior in behaviors)
+        {
+          behavior.Instantiate().WithParent(instance);
+        }
       }
     }
   }

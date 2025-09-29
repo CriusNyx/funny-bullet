@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public abstract partial class Character : Node3D
+public abstract partial class Character : BehaviorHost
 {
   public Health? health;
 
