@@ -1,26 +1,24 @@
-using System.Linq;
+using System;
 using Godot;
 
 [GlobalClass]
-public partial class Level : Node
+public partial class Level : Sequence
 {
+  public event Action<Level>? OnLevelFinished;
+
   public override void _Ready()
   {
-    var level = new SequenceNode("Level", this.GetChildrenNodes());
-    LevelInterpreter.InterpretLevel(level);
-    GD.Print(level.Debug());
+    OnFinished += FinishLevel;
+    Start();
   }
-}
 
-public interface LevelNode
-{
-  InterpreterNode GetNode();
-}
-
-public static class LevelNodeExtensions
-{
-  public static InterpreterNode[] GetChildrenNodes(this Node levelNode)
+  public override void _Process(double delta)
   {
-    return levelNode.GetChildrenOfType<LevelNode>(false).Select(x => x.GetNode()).ToArray();
+    Update(delta);
+  }
+
+  public void FinishLevel()
+  {
+    OnLevelFinished?.Invoke(this);
   }
 }

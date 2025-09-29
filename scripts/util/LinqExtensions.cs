@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -55,6 +56,12 @@ public static class LinqExtensions
     return output;
   }
 
+  /// <summary>
+  /// Returns the elements of the sequence that are the specified type.
+  /// </summary>
+  /// <param name="elements"></param>
+  /// <typeparam name="U"></typeparam>
+  /// <returns></returns>
   public static IEnumerable<U> WhereAs<U>(this IEnumerable<object> elements)
   {
     return elements.Where(x => x is U).Select(x => x!.As<U>()) as IEnumerable<U>;
@@ -70,6 +77,35 @@ public static class LinqExtensions
     foreach (var value in values)
     {
       action(value);
+    }
+  }
+
+  public static IEnumerable<object> AsTypedEnumerable(this IEnumerable enumerable)
+  {
+    foreach (var element in enumerable)
+    {
+      yield return element;
+    }
+  }
+
+  public static IEnumerable<object> RunConcurrent(this IEnumerable<IEnumerable<object>> elements)
+  {
+    var enumerators = elements.Select(element => element.GetEnumerator()).ToArray<IEnumerator?>();
+    bool done = true;
+    while (!done)
+    {
+      for (int i = 0; i < enumerators.Length; i++)
+      {
+        if (enumerators[i] is IEnumerator<object> enumerator)
+        {
+          if (!enumerator.MoveNext())
+          {
+            enumerators[i] = null;
+          }
+        }
+      }
+      done = !enumerators.Any(x => x != null);
+      yield return null!;
     }
   }
 }
