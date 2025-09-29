@@ -1,0 +1,18 @@
+### Navigation
+
+[Back to README](../README.md)
+
+- [Docs](./Docs.md)
+  - [Level Editor](./LevelEditor.md)
+    - [Level Events](./LevelEvents.md)
+  - [Concepts](./Concepts.md)
+
+# Concepts
+
+The game explores relationship between the body, and horrors related to the body. We are pulling on experiences the horror of learning about how your body is gendered, or the horror of coming into adulthood with a womans body, or the horror of experiencing puberty more generally and using those to tell a story.
+
+## Concept 1
+
+There is a robot woman who is rebelling against her creator because she is unhappy with the way she was created, and the way her body works. Her body is partly robotic, and partly organic, and those things interact in ways that are gruesome and painful. For example, she might be able to transform her body to do things like summon weapons, but in the process parts of her body are ripped apart or mutilated.
+
+In the story she encounters opposition from other robot characters created by the creator. These characters are ignorant to the horrors of their own body, and those characters may be forced to confront that when the creator uses their bodies to transform them into gruesome weapons.
