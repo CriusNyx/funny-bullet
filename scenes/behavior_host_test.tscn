@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkfhm6ficftfm"]
+
+[ext_resource type="PackedScene" uid="uid://dm6lgcowi1gnt" path="res://resources/prefabs/enemies/debug_enemy.tscn" id="1_sxlgk"]
+[ext_resource type="PackedScene" uid="uid://cgpict84wnc6" path="res://resources/movement_patterns/swoop.tscn" id="2_sxlgk"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DebugEnemy" parent="." instance=ExtResource("1_sxlgk")]
+
+[node name="Swoop" parent="DebugEnemy" instance=ExtResource("2_sxlgk")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.29112405, -0.16847914, 0.94173336, -0.45992136, 0.838509, 0.2921904, -0.83887994, -0.5181868, 0.16662297, -12.145692, 3.1306133, 6.443302)

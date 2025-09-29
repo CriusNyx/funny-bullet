@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public abstract partial class Character : Node3D
+public abstract partial class Character : BehaviorHost
 {
   public Health? health;
 
@@ -14,7 +14,7 @@ public abstract partial class Character : Node3D
   public void Kill()
   {
     OnKilled(this);
-    foreach (var child in this.GetChildrenOfType<HandleKilled>())
+    foreach (var child in this.GetChildrenOfType<HandleKilled>(true))
     {
       child.OnKilled(this);
     }
@@ -25,7 +25,7 @@ public abstract partial class Character : Node3D
     QueueFree();
   }
 
-  public Character OnDeath(Action<Character> handler)
+  public Character OnDeath(Action<Character?> handler)
   {
     AddChild(new OnDeath(handler));
     return this;

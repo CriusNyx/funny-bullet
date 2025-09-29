@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm6lgcowi1gnt"]
+
+[ext_resource type="Script" uid="uid://7308ul47ibic" path="res://scripts/ai/DebugEnemy.cs" id="1_6igp3"]
+[ext_resource type="PackedScene" uid="uid://b87fyjbrisu4e" path="res://resources/models/primitives/cube.blend" id="2_kff6k"]
+
+[node name="DebugEnemy" type="Node3D"]
+script = ExtResource("1_6igp3")
+lifetime = 5.0
+
+[node name="cube" parent="." instance=ExtResource("2_kff6k")]

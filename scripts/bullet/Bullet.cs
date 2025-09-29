@@ -1,5 +1,4 @@
 using Godot;
-using static Godot.GD;
 
 [GlobalClass]
 public partial class Bullet : Node3D, IHandleHitboxEvents
@@ -41,7 +40,7 @@ public partial class Bullet : Node3D, IHandleHitboxEvents
     return this;
   }
 
-  public static Bullet Spawn(BulletSpawn spawn, PackedScene prefab = null)
+  public static Bullet Spawn(BulletSpawn spawn, PackedScene? prefab = null)
   {
     var instance = prefab?.Instantiate<Bullet>() ?? new Bullet();
     return instance.WithParent(GameInstance.Instance).WithSpawn(spawn).WithName("Bullet");

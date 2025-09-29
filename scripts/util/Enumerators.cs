@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public static class Enumerators
 {
-  public static IEnumerable<float> Range(int count)
+  public static IEnumerable<int> Range(int count)
   {
     for (int i = 0; i < count; i++)
     {

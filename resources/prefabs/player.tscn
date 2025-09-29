@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3xoeumsfbykp"]
+
+[ext_resource type="Script" uid="uid://sbken1o3ty2p" path="res://scripts/player/Player.cs" id="1_4dohe"]
+[ext_resource type="Texture2D" uid="uid://dd46wri5d1v3k" path="res://resources/prefabs/P_Sprite_complete.png" id="3_1txc5"]
+[ext_resource type="Script" uid="uid://kftrqwic5w1c" path="res://scripts/damage/Hurtbox.cs" id="3_r66lb"]
+[ext_resource type="Script" uid="uid://bctkemnccrat1" path="res://scripts/damage/Health.cs" id="4_1txc5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r66lb"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_4dohe")
+
+[node name="Hurtbox" type="CharacterBody3D" parent="."]
+script = ExtResource("3_r66lb")
+canBeHurtBy = 2
+metadata/_custom_type_script = "uid://kftrqwic5w1c"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("SphereShape3D_r66lb")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+layers = 511
+texture = ExtResource("3_1txc5")
+hframes = 3
+vframes = 3
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_1txc5")
+metadata/_custom_type_script = "uid://bctkemnccrat1"

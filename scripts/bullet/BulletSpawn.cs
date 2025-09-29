@@ -106,7 +106,7 @@ public static class BulletSpawnExtensions
         bullet.Fan(innerAngle, count - 1, 0)
       )
       .RepeatSequence(repeatCount, delayPerVolley)
-      .If(withLastFan, x => x.ThenSpawn(bullet.Fan(outerAngle, count, 0), delayPerVolley));
+      .TransformIf(withLastFan, x => x.ThenSpawn(bullet.Fan(outerAngle, count, 0), delayPerVolley));
   }
 
   public static IEnumerable<BulletSpawn> Repeat(

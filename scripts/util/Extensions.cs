@@ -7,6 +7,16 @@ public static class Extensions
     return [element];
   }
 
+  public static T? TouchIfNull<T>(this T? element, Action action)
+    where T : class
+  {
+    if (element is null)
+    {
+      action();
+    }
+    return element;
+  }
+
   public static T? As<T>(this object element)
   {
     if (element is T t)
@@ -25,5 +35,14 @@ public static class Extensions
   public static (T, U) With<T, U>(this T value, U other)
   {
     return (value, other);
+  }
+
+  public static T TransformIf<T>(this T source, bool condition, Func<T, T> func)
+  {
+    if (condition)
+    {
+      return func(source);
+    }
+    return source;
   }
 }

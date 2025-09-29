@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://eg80xuqocy0v"]
+
+[ext_resource type="Script" uid="uid://bp38ix1sgs77h" path="res://scripts/bullet/Bullet.cs" id="1_lv25w"]
+[ext_resource type="Texture2D" uid="uid://b0w4ibaypabq3" path="res://resources/textures/bullets/enemy_bullet_1.png" id="2_lv25w"]
+[ext_resource type="Script" uid="uid://b20eefkgi8wir" path="res://scripts/damage/Hitbox.cs" id="3_7rc6x"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lv25w"]
+radius = 0.11018208
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_lv25w")
+damageSource = 2
+destroyOnHit = true
+metadata/_custom_type_script = "uid://bp38ix1sgs77h"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("2_lv25w")
+
+[node name="Hitbox" type="Node3D" parent="."]
+script = ExtResource("3_7rc6x")
+damageSource = 2
+metadata/_custom_type_script = "uid://b20eefkgi8wir"
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Hitbox"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox/CharacterBody3D"]
+shape = SubResource("SphereShape3D_lv25w")

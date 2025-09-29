@@ -75,7 +75,7 @@ public static class NodeExtensions
     return default;
   }
 
-  public static IEnumerable<T> GetChildrenOfType<T>(this Node node, bool recursive = true)
+  public static IEnumerable<T> GetChildrenOfType<T>(this Node node, bool recursive = false)
   {
     foreach (var child in node.GetChildren())
     {
