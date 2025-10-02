@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Godot;
 
 [GlobalClass]
-public partial class Sequence : LevelNode
+public partial class LevelSequence : LevelNode
 {
   private IEnumerator<LevelNode>? children;
 

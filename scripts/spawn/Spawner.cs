@@ -15,7 +15,7 @@ public partial class Spawner : Node3D
     {
       var instance = prefab
         .Instantiate()
-        .WithParent(GameInstance.Instance.enemies)
+        .WithParent(Game.Instance.enemies)
         .Touch(x => x.As<Node3D>()?.WithTransform(Position));
       if (this.GetParentOfType<Wave>() is Wave wave)
       {

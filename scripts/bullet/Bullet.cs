@@ -5,6 +5,7 @@ public partial class Bullet : Node3D, IHandleHitboxEvents
 {
   double timeAlive;
   public BulletSpawn spawn;
+  Vector3 fireDirection;
 
   [Export(PropertyHint.Flags)]
   public DamageFiler damageSource;
@@ -22,7 +23,7 @@ public partial class Bullet : Node3D, IHandleHitboxEvents
   {
     base._Process(delta);
 
-    var direction = Vector3.Right.Rotated(Vector3.Back, Mathf.DegToRad(spawn.angle));
+    var direction = fireDirection.Rotated(Vector3.Back, Mathf.DegToRad(spawn.angle));
     var offset = direction * spawn.speed * (float)delta;
     Position += offset;
 
@@ -40,10 +41,15 @@ public partial class Bullet : Node3D, IHandleHitboxEvents
     return this;
   }
 
-  public static Bullet Spawn(BulletSpawn spawn, PackedScene? prefab = null)
+  public static Bullet Spawn(BulletSpawn spawn, Vector3 position, Quaternion? rotation = null)
   {
-    var instance = prefab?.Instantiate<Bullet>() ?? new Bullet();
-    return instance.WithParent(GameInstance.Instance).WithSpawn(spawn).WithName("Bullet");
+    var instance = spawn.prefab?.Instantiate<Bullet>() ?? new Bullet();
+    return instance
+      .WithParent(Game.Instance)
+      .WithSpawn(spawn)
+      .WithTransform(position, rotation)
+      .WithName("Bullet")
+      .Touch(x => x.fireDirection = (rotation ?? Quaternion.Identity) * Vector3.Right);
   }
 
   public void OnHit(Hitbox hitbox, Hurtbox hurtbox)

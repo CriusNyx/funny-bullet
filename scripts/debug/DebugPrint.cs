@@ -11,6 +11,10 @@ public static class DebugPrintExtensions
 {
   public static string Debug(this object o)
   {
+    if (o is string str)
+    {
+      return $"\"{str}\"";
+    }
     if (o is IEnumerable enumerable)
     {
       return $"[\n{enumerable.Cast<object>().Select(Debug).StringJoin().Indent("  ")}\n]";
@@ -18,6 +22,10 @@ public static class DebugPrintExtensions
     if (o is DebugPrint debug)
     {
       return $"{o.GetType().Name} {{\n{debug.EnumerateFields().Select(PrintField).StringJoin("\n").Indent("  ")}\n}}";
+    }
+    if (o is null)
+    {
+      return "null";
     }
     return o?.ToString() ?? "";
   }

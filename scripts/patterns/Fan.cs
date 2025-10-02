@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
+[Tool]
 [GlobalClass]
 public partial class Fan : BulletPattern
 {
@@ -13,8 +14,10 @@ public partial class Fan : BulletPattern
   [Export]
   public float delayPerBullet = 0;
 
-  public override IEnumerable<BulletSpawn> Process(IEnumerable<BulletSpawn> childSpawns)
+  public override IEnumerable<BulletSpawn> Process(
+    IEnumerable<IEnumerable<BulletSpawn>> childSpawns
+  )
   {
-    return childSpawns.Fan(angle, count, delayPerBullet);
+    return childSpawns.Flatten().Fan(angle, count, delayPerBullet);
   }
 }

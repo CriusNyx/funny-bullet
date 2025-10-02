@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbekhdsce05eu"]
+
+[ext_resource type="Script" uid="uid://cdiljnl2rj1t0" path="res://scripts/behavios/FireOnEvent.cs" id="1_5wfvv"]
+[ext_resource type="Script" uid="uid://btdn372qnwy3g" path="res://scripts/behaviorEvents/FireParameters.cs" id="2_xnoel"]
+
+[sub_resource type="Resource" id="Resource_kgcwp"]
+script = ExtResource("2_xnoel")
+firePattern = "once"
+metadata/_custom_type_script = "uid://btdn372qnwy3g"
+
+[node name="FireOnZenith" type="Node"]
+script = ExtResource("1_5wfvv")
+eventType = 1
+firePattern = "once"
+fireParameters = SubResource("Resource_kgcwp")
+metadata/_custom_type_script = "uid://cdiljnl2rj1t0"

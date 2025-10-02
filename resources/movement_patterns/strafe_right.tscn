@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://sb6vf36lxrmc"]
+
+[ext_resource type="Script" uid="uid://drjtchgkxckdk" path="res://scripts/behaviors/Strafe.cs" id="1_bmb2c"]
+
+[node name="StrafeRight" type="Node"]
+script = ExtResource("1_bmb2c")
+metadata/_custom_type_script = "uid://drjtchgkxckdk"

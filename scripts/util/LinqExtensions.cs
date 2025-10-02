@@ -97,6 +97,6 @@ public static class LinqExtensions
 
   public static IEnumerable<T> Flatten<T>(this IEnumerable<IEnumerable<T>> source)
   {
-    return source.SelectMany(x => x);
+    return source.Aggregate((x, y) => x.Concat(y));
   }
 }

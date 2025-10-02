@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using static GameStats;
 
@@ -7,6 +9,21 @@ public partial class Player : Character, IHaveHealth, IHandleHurtboxEvents, IHan
   [Export]
   public int MyInt;
   InputFrame input = InputFrame.Empty();
+  static HashSet<Player> playerInstances = new HashSet<Player>();
+  public static IReadOnlySet<Player> PlayerInstance => playerInstances;
+  public static Player? Instance => playerInstances.FirstOrDefault();
+
+  public override void _EnterTree()
+  {
+    playerInstances.Add(this);
+    base._EnterTree();
+  }
+
+  public override void _ExitTree()
+  {
+    playerInstances.Remove(this);
+    base._ExitTree();
+  }
 
   public override void _Ready()
   {

@@ -5,7 +5,7 @@ public partial class Debugger : Node2D
 {
   RichTextLabel label;
 
-  public static Debugger Instance => GameInstance.Instance.Debugger;
+  public static Debugger Instance => Game.Instance.Debugger;
 
   public string LevelInterpreterString { get; private set; }
 

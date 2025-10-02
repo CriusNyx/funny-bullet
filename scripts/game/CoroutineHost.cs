@@ -5,7 +5,7 @@ using Godot;
 public partial class CoroutineHost : Node
 {
   Queue<Coroutine> runningRoutines = new Queue<Coroutine>();
-  public static CoroutineHost Instance = GameInstance.Instance.CoroutineHost;
+  public static CoroutineHost Instance = Game.Instance.CoroutineHost;
   public static double DeltaTime { get; private set; }
 
   public Coroutine StartCoroutine(Node host, IEnumerator routine)
