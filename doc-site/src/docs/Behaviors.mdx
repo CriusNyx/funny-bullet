@@ -40,15 +40,15 @@ fire event to the other behaviors.
 
 | Events    |                                  |
 | --------- | -------------------------------- |
-| FireEvent | Sends when behavior is triggered |
+| FireEvent | Fires when behavior is triggered |
 
 ## Strafe
 
-Will move the enemy in the direction and speed specified in with the strafe.
+Will move the actor in the direction and speed specified in with the strafe.
 
 | Events |                                |
 | ------ | ------------------------------ |
-| Zenith | Sends when owner passes player |
+| Zenith | Fires when actor passes player |
 
 ## SwoopAtPlayer
 
@@ -57,7 +57,7 @@ and then turn around.
 
 | Events |                                   |
 | ------ | --------------------------------- |
-| Zenith | Sends when the enemy turns around |
+| Zenith | Fires when the actor turns around |
 
 ## OnDeath
 
@@ -70,6 +70,14 @@ artists.
 
 Gives an actor health. They will get hurt when they recieve damage events.
 
+| Events |                           |
+| ------ | ------------------------- |
+| Death  | Fires when the actor dies |
+
 ## Hurtbox
 
 Creates a physical hurtbox that accepts damage when the actor gets hurt.
+
+| Events |                                         |
+| ------ | --------------------------------------- |
+| Hurt   | Fires when a hurtbox collides with this |
