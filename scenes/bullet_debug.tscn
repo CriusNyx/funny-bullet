@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dms4k3ykunwbf"]
+
+[ext_resource type="Script" uid="uid://blybu462xev7d" path="res://scripts/patterns/SequencePattern.cs" id="1_a5o8x"]
+[ext_resource type="Script" uid="uid://ca3j28p730ifk" path="res://scripts/patterns/Fan.cs" id="2_qgsc0"]
+[ext_resource type="Script" uid="uid://dhtdiyv1tprpq" path="res://scripts/patterns/SpawnOne.cs" id="3_c8yiw"]
+[ext_resource type="Script" uid="uid://f0vavj4tflv7" path="res://scripts/patterns/InterleavedFan.cs" id="4_qgsc0"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SequencePattern" type="Node" parent="."]
+script = ExtResource("1_a5o8x")
+delay = 0.5
+metadata/_custom_type_script = "uid://blybu462xev7d"
+
+[node name="Fan" type="Node" parent="SequencePattern"]
+script = ExtResource("2_qgsc0")
+count = 5
+metadata/_custom_type_script = "uid://ca3j28p730ifk"
+
+[node name="SpawnOne" type="Node" parent="SequencePattern/Fan"]
+script = ExtResource("3_c8yiw")
+metadata/_custom_type_script = "uid://dhtdiyv1tprpq"
+
+[node name="Fan2" type="Node" parent="SequencePattern"]
+script = ExtResource("2_qgsc0")
+angle = 45.0
+count = 6
+metadata/_custom_type_script = "uid://ca3j28p730ifk"
+
+[node name="SpawnOne2" type="Node" parent="SequencePattern/Fan2"]
+script = ExtResource("3_c8yiw")
+metadata/_custom_type_script = "uid://dhtdiyv1tprpq"
+
+[node name="InterleavedFan" type="Node" parent="SequencePattern"]
+script = ExtResource("4_qgsc0")
+delayPerVolley = 0.25
+withLastFan = true
+metadata/_custom_type_script = "uid://f0vavj4tflv7"
+
+[node name="SpawnOne2" type="Node" parent="SequencePattern/InterleavedFan"]
+script = ExtResource("3_c8yiw")
+metadata/_custom_type_script = "uid://dhtdiyv1tprpq"

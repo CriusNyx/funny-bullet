@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
+[Tool]
 [GlobalClass]
 public partial class SpawnOne : BulletPattern
 {
@@ -11,7 +12,7 @@ public partial class SpawnOne : BulletPattern
   public float delay = 0;
 
   [Export]
-  public float speed = GameStats.defaultBulletSpeed;
+  public float speed = GameStats.DEFAULT_BULLET_SPEED;
 
   [Export]
   public float angle = 0f;
@@ -19,7 +20,12 @@ public partial class SpawnOne : BulletPattern
   [Export]
   public float lifetime = -1f;
 
-  public override IEnumerable<BulletSpawn> Process(IEnumerable<BulletSpawn> childSpawns)
+  [Export]
+  public PackedScene prefab = null!;
+
+  public override IEnumerable<BulletSpawn> Process(
+    IEnumerable<IEnumerable<BulletSpawn>> childSpawns
+  )
   {
     return
     [
@@ -30,6 +36,7 @@ public partial class SpawnOne : BulletPattern
         speed = speed,
         angle = angle,
         lifetime = lifetime,
+        prefab = prefab,
       },
     ];
   }

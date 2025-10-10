@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://gf2egdtjvkn8"]
+[gd_scene load_steps=17 format=3 uid="uid://gf2egdtjvkn8"]
 
 [ext_resource type="PackedScene" uid="uid://d3xoeumsfbykp" path="res://resources/prefabs/player.tscn" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://baj7jlp7b15u0" path="res://scripts/level/Wave.cs" id="2_tbgi4"]
@@ -7,33 +7,12 @@
 [ext_resource type="Script" uid="uid://c57wawphk1c5g" path="res://scripts/level/Level.cs" id="4_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dm6lgcowi1gnt" path="res://resources/prefabs/enemies/debug_enemy.tscn" id="6_o6xl0"]
 [ext_resource type="Script" uid="uid://1veuy4fyhgj4" path="res://scripts/spawn/Spawner.cs" id="6_tefeu"]
-[ext_resource type="PackedScene" uid="uid://cgpict84wnc6" path="res://resources/movement_patterns/swoop.tscn" id="8_tipki"]
-[ext_resource type="PackedScene" uid="uid://oa236rvwjfls" path="res://resources/fire_patterns/fire_idk.tscn" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://dbekhdsce05eu" path="res://resources/fire_behaviors/fire_on_zenith.tscn" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://dyuqf0k68gxlj" path="res://resources/movement_patterns/swoop_at_player.tscn" id="9_choun"]
+[ext_resource type="PackedScene" uid="uid://sb6vf36lxrmc" path="res://resources/movement_patterns/strafe_right.tscn" id="10_choun"]
 
 [sub_resource type="Animation" id="Animation_o6xl0"]
 length = 10.0
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/Spawner")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer/Spawner")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
-
-[sub_resource type="Animation" id="Animation_tbgi4"]
-resource_name = "run"
-length = 2.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -41,25 +20,120 @@ tracks/0/path = NodePath("AnimationPlayer/Spawner")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.73333335),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Spawner:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-29.703182, 21.274971, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tbgi4"]
+resource_name = "run"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Spawner")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 2.2666667, 4.1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [],
+"method": &"Spawn"
+}, {
+"args": [],
+"method": &"Spawn"
+}, {
 "args": [],
 "method": &"Spawn"
 }]
 }
-tracks/1/type = "position_3d"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer/Spawner")
-tracks/1/interp = 2
+tracks/1/path = NodePath("AnimationPlayer/Spawner:position")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -5.074244, 1.2867018, 0, 1.0333333, 1, 0, 1.4288952, 0, 2, 1, 2.3267927, 2.0880454, 0)
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.61),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-29.703182, 21.274971, 0), Vector3(25.133003, 21.274971, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tefeu"]
 _data = {
 &"RESET": SubResource("Animation_o6xl0"),
 &"start": SubResource("Animation_tbgi4")
+}
+
+[sub_resource type="Animation" id="Animation_choun"]
+resource_name = "start"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Spawner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-38.628532, 12.804453, 0), Vector3(-38.628532, -20.5119, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Spawner")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6, 1.0333333, 1.6333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"Spawn"
+}, {
+"args": [],
+"method": &"Spawn"
+}, {
+"args": [],
+"method": &"Spawn"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ya4ey"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Spawner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-38.628532, 25.596922, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eb6dy"]
+_data = {
+&"RESET": SubResource("Animation_ya4ey"),
+&"start": SubResource("Animation_choun")
 }
 
 [node name="Node3D" type="Node3D"]
@@ -76,6 +150,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3199317, 0)
 
 [node name="Level" type="Node" parent="."]
 script = ExtResource("4_tbgi4")
+IsDone = true
 metadata/_custom_type_script = "uid://c57wawphk1c5g"
 
 [node name="Wave" type="Node" parent="Level"]
@@ -88,7 +163,24 @@ libraries = {
 }
 
 [node name="Spawner" type="Node3D" parent="Level/Wave/AnimationPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.703182, 21.274971, 0)
 script = ExtResource("6_tefeu")
 prefab = ExtResource("6_o6xl0")
-behaviors = [ExtResource("8_tipki"), ExtResource("9_85g3d")]
+behaviors = [ExtResource("9_choun"), ExtResource("9_85g3d")]
+metadata/_custom_type_script = "uid://1veuy4fyhgj4"
+
+[node name="Wave2" type="Node" parent="Level"]
+script = ExtResource("2_tbgi4")
+metadata/_custom_type_script = "uid://baj7jlp7b15u0"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Wave2"]
+libraries = {
+&"": SubResource("AnimationLibrary_eb6dy")
+}
+
+[node name="Spawner" type="Node3D" parent="Level/Wave2/AnimationPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.628532, 25.596922, 0)
+script = ExtResource("6_tefeu")
+prefab = ExtResource("6_o6xl0")
+behaviors = [ExtResource("10_choun"), ExtResource("9_85g3d")]
 metadata/_custom_type_script = "uid://1veuy4fyhgj4"

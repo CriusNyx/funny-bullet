@@ -3,11 +3,11 @@ using Godot;
 [GlobalClass]
 public partial class Debugger : Node2D
 {
-  RichTextLabel label;
+  RichTextLabel label = null!;
 
-  public static Debugger Instance => GameInstance.Instance.Debugger;
+  public static Debugger Instance => Game.Instance?.Debugger!;
 
-  public string LevelInterpreterString { get; private set; }
+  public string LevelInterpreterString { get; private set; } = null!;
 
   public override void _Ready()
   {

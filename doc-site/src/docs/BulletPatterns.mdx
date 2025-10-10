@@ -1,0 +1,63 @@
+# Bullet Patterns
+
+Bullet patterns are nodes which describe the order, position, and direction
+that bullets fire in.
+
+Bullet Pattern nodes will either create new, unique patterns themselves, or
+modify the patterns in their children.
+
+The leaf nodes of each pattern should be a SpawnOne.
+
+## Fan
+
+Convert each bullet in the child pattern into a fan.
+
+| Variables      |                                                             |
+| -------------- | ----------------------------------------------------------- |
+| angle          | The angle of the fan in degrees.                            |
+| count          | The number of bullets to spawn.                             |
+| delayPerBullet | The amount of time, in seconds, between bullets in the fan. |
+
+## Interleaved Fan
+
+Converts each bullet in the child into pairs of Interleaved fans.
+
+Generally this component should only be used with a few children.
+
+| Variables     |                                                   |
+| ------------- | ------------------------------------------------- |
+| repeatCount   | The number of pairs of fans to spawn.             |
+| outerAngle    | The angle of the larger of the fan pairs.         |
+| count         | The number of bullets to spawn in the larger fan. |
+| delayPerVolly | The delay for each bullet in the volly.           |
+| withLastFan   | Include an extra outer fan at the end.            |
+
+## Repeat
+
+Repeats the child pattern multiple times.
+
+| Variables      |                                |
+| -------------- | ------------------------------ |
+| repeatCount    | The number of times to repeat. |
+| delayPerRepeat | The delay per each repeat.     |
+
+## Sequence
+
+Spawn each child in sequence, one after the other.
+
+| Variables |                                        |
+| --------- | -------------------------------------- |
+| delay     | The delay between each child sequence. |
+
+## Spawn One
+
+Returns a single bullet spawn.
+
+| Variables |                                                                           |
+| --------- | ------------------------------------------------------------------------- |
+| position  | The position, relative to the host, to spawn the bullet at.               |
+| delay     | The delay, in seconds, before this bullet fires.                          |
+| speed     | The speed of the bullet.                                                  |
+| angle     | The unit angle, in degrees, to spawn the bullet at. 0 is right. 90 is up. |
+| lifetime  | How long the bullet should live for.                                      |
+| prefab    | The bullet prefab to spawn. Must be defined for this to work.             |

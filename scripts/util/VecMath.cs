@@ -6,4 +6,13 @@ public static class VecMath
   {
     return a.Lerp(b, t);
   }
+
+  public static Vector3 SClamp(this Vector3 v, float l)
+  {
+    if (v.Length() > l)
+    {
+      return v.Normalized() * l;
+    }
+    return v;
+  }
 }

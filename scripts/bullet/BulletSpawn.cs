@@ -9,6 +9,7 @@ public struct BulletSpawn : DebugPrint
   public float speed;
   public float angle;
   public float lifetime;
+  public PackedScene prefab;
 
   public BulletSpawn WithParameters(SpawnParameters spawnParameters)
   {
@@ -20,7 +21,8 @@ public struct BulletSpawn : DebugPrint
     float? spawnTime = null,
     float? speed = null,
     float? angle = null,
-    float? lifetime = null
+    float? lifetime = null,
+    PackedScene? prefab = null
   )
   {
     return new BulletSpawn
@@ -30,12 +32,23 @@ public struct BulletSpawn : DebugPrint
       speed = speed ?? this.speed,
       angle = angle ?? this.angle,
       lifetime = lifetime ?? this.lifetime,
+      prefab = prefab ?? this.prefab,
     };
   }
 
   public IEnumerable<(string, object)> EnumerateFields()
   {
     return [("spawnTime", spawnTime), ("speed", speed), ("angle", angle), ("lifetime", lifetime)];
+  }
+
+  public Vector2 Interpolate(float time)
+  {
+    return position + (Direction() * speed * time);
+  }
+
+  public Vector2 Direction()
+  {
+    return Vector2.Right.Rotated(Mathf.DegToRad(angle));
   }
 
   public static IEnumerable<BulletSpawn> Sequence(
@@ -51,10 +64,9 @@ public struct BulletSpawn : DebugPrint
     IEnumerable<IEnumerable<BulletSpawn>> spawns
   )
   {
-    return spawns.Aggregate<IEnumerable<BulletSpawn>, IEnumerable<BulletSpawn>>(
-      [],
-      (prev, curr) => prev.ThenSpawn(curr, delay)
-    );
+    return spawns
+      .Skip(1)
+      .Aggregate(spawns.FirstOrDefault() ?? [], (prev, curr) => prev.ThenSpawn(curr, delay));
   }
 }
 

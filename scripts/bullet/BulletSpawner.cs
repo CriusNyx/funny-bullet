@@ -5,7 +5,7 @@ using Godot;
 public partial class BulletSpawner : Node3D
 {
   private double time;
-  public IEnumerator<BulletSpawn> spawns;
+  public IEnumerator<BulletSpawn> spawns = null!;
   public SpawnParameters spawnParameters;
 
   public override void _Ready()
@@ -19,7 +19,7 @@ public partial class BulletSpawner : Node3D
 
     while (NextBullet() is BulletSpawn nextBullet)
     {
-      Bullet.Spawn(nextBullet.WithParameters(spawnParameters), spawnParameters.prefab);
+      Bullet.Spawn(nextBullet.WithParameters(spawnParameters), Position, Quaternion);
     }
 
     if (spawns == null)
@@ -67,12 +67,22 @@ public partial class BulletSpawner : Node3D
     IEnumerable<BulletSpawn> spawn,
     SpawnParameters spawnParameters,
     Node3D parent,
-    Vector3? position = null
+    Vector3? position = null,
+    Node3D? target = null
   )
   {
+    var pos = position ?? parent.Position;
+    var rotation = Quaternion.Identity;
+    if (target != null)
+    {
+      var targetDirection = (target.Position - pos).Normalized();
+      var theta = Mathf.Atan2(targetDirection.Y, targetDirection.X);
+      rotation = Quaternion.FromEuler(new Vector3(0, 0, theta));
+    }
+
     return new BulletSpawner()
       .WithParent(parent)
       .WithSpawn(spawn, spawnParameters)
-      .WithTransform(position ?? parent.Position);
+      .WithTransform(position ?? parent.Position, rotation);
   }
 }

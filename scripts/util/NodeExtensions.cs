@@ -11,12 +11,20 @@ public static class NodeExtensions
     return child;
   }
 
-  public static T WithTransform<T>(this T node, Vector3? position)
+  public static T WithTransform<T>(
+    this T node,
+    Vector3? position = null,
+    Quaternion? rotation = null
+  )
     where T : Node3D
   {
     if (position != null)
     {
       node.Position = position.Value;
+    }
+    if (rotation != null)
+    {
+      node.Quaternion = rotation.Value;
     }
     return node;
   }
@@ -35,14 +43,24 @@ public static class NodeExtensions
     return node;
   }
 
-  public static T? GetParentOfType<T>(this Node node)
+  public static T GetParentOfType<T>(this Node node)
     where T : GodotObject
   {
     if (node is T t)
     {
       return t;
     }
-    return node.GetParent()?.GetParentOfType<T>();
+    return node.GetParent().GetParentOfType<T>();
+  }
+
+  public static T GetRootOfType<T>(this T node)
+    where T : Node
+  {
+    if (node.GetParent() is T parent)
+    {
+      return parent.GetRootOfType();
+    }
+    return node;
   }
 
   public static IEnumerable<T> GetParentsOfType<T>(this Node node)

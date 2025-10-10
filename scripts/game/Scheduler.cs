@@ -25,7 +25,7 @@ public class ScheduledTask
 public class Scheduler
 {
   private List<ScheduledTask> tasks = new List<ScheduledTask>();
-  public static Scheduler Instance => GameInstance.Scheduler;
+  public static Scheduler Instance => Game.Scheduler;
 
   public void Process()
   {

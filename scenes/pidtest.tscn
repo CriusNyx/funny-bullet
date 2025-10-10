@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://due8tx3sthqhx"]
+
+[ext_resource type="Script" uid="uid://sbken1o3ty2p" path="res://scripts/player/Player.cs" id="2_mrndr"]
+[ext_resource type="PackedScene" uid="uid://b87fyjbrisu4e" path="res://resources/models/primitives/cube.blend" id="2_r2t7p"]
+[ext_resource type="Script" uid="uid://7308ul47ibic" path="res://scripts/ai/DebugEnemy.cs" id="3_5fdad"]
+[ext_resource type="PackedScene" uid="uid://dyuqf0k68gxlj" path="res://resources/movement_patterns/swoop_at_player.tscn" id="4_5fdad"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" type="Node3D" parent="."]
+script = ExtResource("2_mrndr")
+metadata/_custom_type_script = "uid://sbken1o3ty2p"
+
+[node name="cube" parent="Player" instance=ExtResource("2_r2t7p")]
+
+[node name="DebugEnemy" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 30, 0)
+script = ExtResource("3_5fdad")
+metadata/_custom_type_script = "uid://7308ul47ibic"
+
+[node name="cube" parent="DebugEnemy" instance=ExtResource("2_r2t7p")]
+
+[node name="SwoopAtPlayer" parent="DebugEnemy" instance=ExtResource("4_5fdad")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.54216)
+omni_range = 86.76959

@@ -1,10 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm6lgcowi1gnt"]
+[gd_scene load_steps=6 format=3 uid="uid://dm6lgcowi1gnt"]
 
 [ext_resource type="Script" uid="uid://7308ul47ibic" path="res://scripts/ai/DebugEnemy.cs" id="1_6igp3"]
 [ext_resource type="PackedScene" uid="uid://b87fyjbrisu4e" path="res://resources/models/primitives/cube.blend" id="2_kff6k"]
+[ext_resource type="Script" uid="uid://uqg4xsr10gay" path="res://scripts/behavios/BulletPatterns.cs" id="3_n4q0i"]
+[ext_resource type="PackedScene" uid="uid://eg80xuqocy0v" path="res://resources/prefabs/bullet.tscn" id="4_sn8vl"]
+[ext_resource type="Script" uid="uid://dhtdiyv1tprpq" path="res://scripts/patterns/SpawnOne.cs" id="5_itqax"]
 
 [node name="DebugEnemy" type="Node3D"]
 script = ExtResource("1_6igp3")
 lifetime = 5.0
 
 [node name="cube" parent="." instance=ExtResource("2_kff6k")]
+
+[node name="DebugEnemyFirePatterns" type="Node" parent="."]
+script = ExtResource("3_n4q0i")
+bullet = ExtResource("4_sn8vl")
+
+[node name="once" type="Node" parent="DebugEnemyFirePatterns"]
+script = ExtResource("5_itqax")
+lifetime = 5.0
+prefab = ExtResource("4_sn8vl")
+metadata/_custom_type_script = "uid://dhtdiyv1tprpq"

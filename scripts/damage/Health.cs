@@ -1,13 +1,16 @@
 using Godot;
 
 [GlobalClass]
-public partial class Health : Node, IHaveHealth
+public partial class Health : Node, Behavior
 {
   [Export]
   public int maxHealth = 10;
 
   [Export]
   public int health = 10;
+
+  [Export]
+  public bool isDead = false;
 
   public Health GetHealth()
   {
@@ -16,23 +19,25 @@ public partial class Health : Node, IHaveHealth
 
   public void Hurt()
   {
+    GD.Print("Hurt");
     health--;
-    if (health < 0)
+    CheckDead();
+  }
+
+  private void CheckDead()
+  {
+    if (!isDead && health <= 0)
     {
-      foreach (var parent in this.GetParentsOfType<IHandleDeath>())
-      {
-        parent.OnDead(this);
-      }
+      isDead = true;
+      this.BroadcastEvent(new DeathEvent());
     }
   }
-}
 
-public interface IHaveHealth
-{
-  public Health GetHealth();
-}
-
-public interface IHandleDeath
-{
-  public void OnDead(Health health);
+  public void OnBehaviorEvent(BehaviorEvent e, Behavior sender)
+  {
+    if (e is HurtEvent he)
+    {
+      Hurt();
+    }
+  }
 }
