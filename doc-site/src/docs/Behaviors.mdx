@@ -1,9 +1,13 @@
+# Actors
+
+Actors are nodes that can be modified by attaching behaviors to them.
+
 # Behaviors
 
-Behaviors are child nodes that you can place under a behavior host to modify the
-behavior of the host.
+Behaviors are child nodes that you can place under a actor to modify the
+behavior of the actor.
 
-The host will run each child behavior attached to it in the order that they're
+The actor will run each child behavior attached to it in the order that they're
 attached.
 
 Behaviors can broadcast and recieve events from other behaviors.
@@ -54,3 +58,18 @@ and then turn around.
 | Events |                                   |
 | ------ | --------------------------------- |
 | Zenith | Sends when the enemy turns around |
+
+## OnDeath
+
+A behavior to handle death.
+
+Generally this behavior should be created in code, and not created by level
+artists.
+
+## Health
+
+Gives an actor health. They will get hurt when they recieve damage events.
+
+## Hurtbox
+
+Creates a physical hurtbox that accepts damage when the actor gets hurt.
