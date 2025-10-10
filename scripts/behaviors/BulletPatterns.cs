@@ -2,8 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
+/// <summary>
+/// A behavior to hold bullet patterns to spawn for the NPC.
+/// </summary>
 [GlobalClass]
-public partial class BulletPatterns : Behavior
+public partial class BulletPatterns : Node, Behavior
 {
   [Export]
   public PackedScene? bullet;
@@ -18,13 +21,13 @@ public partial class BulletPatterns : Behavior
     }
   }
 
-  public override void OnBehaviorEvent(BehaviorEvent e, Behavior sender)
+  public void OnBehaviorEvent(BehaviorEvent e, Behavior sender)
   {
     if (e is FireEvent fireEvent)
     {
       if (patternsCache.TryGetValue(fireEvent.fireParameters?.firePattern ?? "", out var pattern))
       {
-        if (Host is BehaviorHost host)
+        if (this.GetActor() is Actor host)
         {
           BulletSpawner.Create(
             pattern,

@@ -1,4 +1,5 @@
 using System.Linq;
+
 using Godot;
 
 [GlobalClass]
@@ -13,6 +14,8 @@ public partial class Wave : LevelNode
     foreach (var animationPlayer in this.GetChildrenOfType<AnimationPlayer>())
     {
       animationPlayer.Play(GameStats.START_ANIMATION_NAME);
+
+      
     }
   }
 

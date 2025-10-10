@@ -1,8 +1,7 @@
 using Godot;
-using static Godot.GD;
 
 [GlobalClass]
-public partial class Hurtbox : CharacterBody3D
+public partial class Hurtbox : CharacterBody3D, Behavior
 {
   [Export]
   public DamageFiler canBeHurtBy;
@@ -51,18 +50,8 @@ public partial class Hurtbox : CharacterBody3D
   {
     hitbox.OnHit(this);
     OnHurt(hitbox);
+    this.BroadcastEvent(new HurtEvent(hitbox, this));
   }
 
-  public void OnHurt(Hitbox hitbox)
-  {
-    foreach (var parent in this.GetParentsOfType<IHandleHurtboxEvents>())
-    {
-      parent.OnHurt(hitbox, this);
-    }
-  }
-}
-
-interface IHandleHurtboxEvents
-{
-  void OnHurt(Hitbox hitbox, Hurtbox hurtbox);
+  public void OnHurt(Hitbox hitbox) { }
 }

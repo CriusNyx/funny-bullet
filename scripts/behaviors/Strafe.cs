@@ -1,7 +1,10 @@
 using Godot;
 
+/// <summary>
+/// The enemies strafes in a strait direction.
+/// </summary>
 [GlobalClass]
-public partial class Strafe : Behavior
+public partial class Strafe : Node, Behavior
 {
   [Export]
   public float strafeAngle = 0;
@@ -13,7 +16,7 @@ public partial class Strafe : Behavior
   public override void _Process(double delta)
   {
     base._Process(delta);
-    if (Host is BehaviorHost host)
+    if (this.GetActor() is Actor host)
     {
       host.Position += Vector2.Right.Rotated(strafeAngle).To3() * strafeSpeed * (float)delta;
     }
@@ -23,7 +26,7 @@ public partial class Strafe : Behavior
 
   private void CheckZenith()
   {
-    if (!hasHitInflection && Host is BehaviorHost host && Player.Instance is Player player)
+    if (!hasHitInflection && this.GetActor() is Actor host && Player.Instance is Player player)
     {
       var distance = host.Position.DistanceTo(player.Position);
       if (distance > distanceFromPlayer)
@@ -37,6 +40,6 @@ public partial class Strafe : Behavior
   private void HitZenith()
   {
     hasHitInflection = true;
-    Host?.BroadcastEvent(new ZenithEvent { }, this);
+    this.GetActor()?.BroadcastEvent(new ZenithEvent { }, this);
   }
 }

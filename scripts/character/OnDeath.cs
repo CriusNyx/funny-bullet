@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class OnDeath : Node, HandleKilled
+public partial class OnDeath : Node, Behavior
 {
   public bool handled = false;
   Action<Character?> handler;
@@ -11,7 +11,15 @@ public partial class OnDeath : Node, HandleKilled
     this.handler = handler;
   }
 
-  public void OnKilled(Character? character)
+  public void OnBehaviorEvent(BehaviorEvent e, Behavior sender)
+  {
+    if (e is DeathEvent de && this.GetActor() is Character character)
+    {
+      HandleDeath(character);
+    }
+  }
+
+  private void HandleDeath(Character? character)
   {
     if (!handled)
     {
@@ -23,7 +31,7 @@ public partial class OnDeath : Node, HandleKilled
 
   public override void _ExitTree()
   {
-    OnKilled(this.GetParentOfType<Character>());
+    HandleDeath(this.GetParentOfType<Character>());
   }
 }
 

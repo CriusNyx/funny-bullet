@@ -4,7 +4,7 @@ using Godot;
 public partial class AI : Node3D
 {
   [Export]
-  public PackedScene bulletPrefab;
+  public PackedScene bulletPrefab = null!;
 
   public override void _Ready()
   {

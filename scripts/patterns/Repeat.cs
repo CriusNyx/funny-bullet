@@ -9,12 +9,12 @@ public partial class Repeat : BulletPattern
   public int repeatCount = 1;
 
   [Export]
-  public float delayPerVolley = 0;
+  public float delayPerRepeat = 0;
 
   public override IEnumerable<BulletSpawn> Process(
     IEnumerable<IEnumerable<BulletSpawn>> childSpawns
   )
   {
-    return childSpawns.Flatten().Repeat(repeatCount, delayPerVolley);
+    return childSpawns.Flatten().Repeat(repeatCount, delayPerRepeat);
   }
 }

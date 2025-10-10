@@ -45,7 +45,7 @@ public partial class Bullet : Node3D, IHandleHitboxEvents
   {
     var instance = spawn.prefab?.Instantiate<Bullet>() ?? new Bullet();
     return instance
-      .WithParent(Game.Instance)
+      .WithParent(Game.Instance.NotNull())
       .WithSpawn(spawn)
       .WithTransform(position, rotation)
       .WithName("Bullet")

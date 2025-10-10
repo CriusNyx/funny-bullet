@@ -67,4 +67,14 @@ public static class Extensions
     }
     return value;
   }
+
+  public static T NotNull<T>(this T? value)
+    where T : class
+  {
+    if (value is null)
+    {
+      throw new NullReferenceException("Vaule was expected to not be null");
+    }
+    return value;
+  }
 }

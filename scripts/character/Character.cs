@@ -1,15 +1,12 @@
 using System;
 
-public abstract partial class Character : BehaviorHost
+public abstract partial class Character : Actor
 {
-  public Health? health;
-
   public virtual bool DestroyOnLeaveBounds => true;
 
   public override void _Ready()
   {
     base._Ready();
-    health = this.GetChildOfType<Health>();
   }
 
   public override void _Process(double deltaTime)
@@ -33,10 +30,6 @@ public abstract partial class Character : BehaviorHost
   public void Kill()
   {
     OnKilled(this);
-    foreach (var child in this.GetChildrenOfType<HandleKilled>(true))
-    {
-      child.OnKilled(this);
-    }
   }
 
   protected virtual void OnKilled(Character character)
@@ -51,9 +44,4 @@ public abstract partial class Character : BehaviorHost
   }
 
   public virtual void OnLeaveSafeBounds() { }
-}
-
-interface HandleKilled
-{
-  void OnKilled(Character character);
 }

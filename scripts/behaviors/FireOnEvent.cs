@@ -1,7 +1,10 @@
 using Godot;
 
+/// <summary>
+/// Transforms events of the specified type to fire events.cc
+/// </summary>
 [GlobalClass]
-public partial class FireOnEvent : Behavior
+public partial class FireOnEvent : Node, Behavior
 {
   [Export]
   public BehaviorEventType eventType;
@@ -12,7 +15,7 @@ public partial class FireOnEvent : Behavior
   [Export]
   public FireParameters? fireParameters = null;
 
-  public override void OnBehaviorEvent(BehaviorEvent e, Behavior sender)
+  public void OnBehaviorEvent(BehaviorEvent e, Behavior sender)
   {
     // Prevent recursively rebroadcasting events.
     if (sender == this)
@@ -21,7 +24,7 @@ public partial class FireOnEvent : Behavior
     }
     if (e.Type == eventType)
     {
-      BroadcastEvent(new FireEvent { fireParameters = fireParameters });
+      this.BroadcastEvent(new FireEvent { fireParameters = fireParameters });
     }
   }
 }

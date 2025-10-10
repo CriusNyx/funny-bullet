@@ -1,7 +1,10 @@
 using Godot;
 
+/// <summary>
+/// Swoop at the player
+/// </summary>
 [GlobalClass]
-public partial class SwoopAtPlayer : Behavior
+public partial class SwoopAtPlayer : Node, Behavior
 {
   [Export]
   public PIDConfig? pidConfig;
@@ -32,9 +35,8 @@ public partial class SwoopAtPlayer : Behavior
     base._Ready();
   }
 
-  public override void HostPhysicsUpdate(BehaviorHost host, double deltaTime)
+  public void HostPhysicsUpdate(Actor host, double deltaTime)
   {
-    base.HostPhysicsUpdate(host, deltaTime);
     if (Player.Instance is Player player)
     {
       var target = GetTarget(player);
@@ -46,7 +48,7 @@ public partial class SwoopAtPlayer : Behavior
 
   private void UpdatePosition(Player player, float deltaTime, Vector3 target)
   {
-    var hostPosition = Host?.Position ?? default;
+    var hostPosition = this.GetActor()?.Position ?? default;
     var targetPosition = GetTarget(player);
 
     var pid = pidController?.Iterate(hostPosition, targetPosition, deltaTime) ?? Vector3.Zero;
@@ -61,15 +63,15 @@ public partial class SwoopAtPlayer : Behavior
 
     velocity = velocity.MoveToward(pid, deltaTime * acceleration).SClamp(maxVelocity);
 
-    if (Host != null)
+    if (this.GetActor() is Actor actor)
     {
-      Host.Position += velocity * deltaTime;
+      actor.Position += velocity * deltaTime;
     }
   }
 
   private Vector3 GetTarget(Player player)
   {
-    var hostPosition = Host?.Position ?? default;
+    var hostPosition = this.GetActor()?.Position ?? default;
     var playerPosition = player.Position;
 
     if (hasHitZenith)
@@ -86,7 +88,7 @@ public partial class SwoopAtPlayer : Behavior
   {
     if (!hasHitZenith)
     {
-      var hostPosition = Host?.Position ?? default;
+      var hostPosition = this.GetActor()?.Position ?? default;
       if (hostPosition.DistanceTo(target) < inflectionDistance)
       {
         HitZenith();
@@ -97,6 +99,6 @@ public partial class SwoopAtPlayer : Behavior
   private void HitZenith()
   {
     hasHitZenith = true;
-    BroadcastEvent(new ZenithEvent { });
+    this.BroadcastEvent(new ZenithEvent { });
   }
 }
