@@ -1,0 +1,42 @@
+.page-gradiant {
+
+}
+
+h1 {
+  font-size: 3rem;
+  padding-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+h3{
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+}
+
+h4{
+  font-size: 1rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+}
+
+p{
+  padding-bottom: 1rem;
+}
+
+code {
+  background-color: var(--color-neutral-800);
+  padding: 5px;
+}
+
+table, th, td {
+  border: 1px solid var(--accent);
+}
+
+th, td {
+  padding: calc(var(--spacing) * 1);
+}

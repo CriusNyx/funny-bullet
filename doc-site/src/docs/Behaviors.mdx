@@ -1,0 +1,56 @@
+# Behaviors
+
+Behaviors are child nodes that you can place under a behavior host to modify the
+behavior of the host.
+
+The host will run each child behavior attached to it in the order that they're
+attached.
+
+Behaviors can broadcast and recieve events from other behaviors.
+
+## AnimatedBehavior
+
+The animated behavior will look for timelines attached to it and run those
+timelines `start` animation.
+
+## BulletPatterns
+
+Attach this to an actor to allow that actor to shoot.
+
+When this behavior recieves a fire event it will find a bullet pattern attached
+to this behavior and fire it.
+
+## FireOnEvent
+
+When an event of the specified type is recieved this behavior will broadcast a
+fire event to the other behaviors.
+
+| Variables      |                              |
+| -------------- | ---------------------------- |
+| eventType      | The type of event to fire on |
+| firePattern    | The fire pattern to play     |
+| fireParameters | Additional fire paramters    |
+
+<br />
+<br />
+
+| Events    |                                  |
+| --------- | -------------------------------- |
+| FireEvent | Sends when behavior is triggered |
+
+## Strafe
+
+Will move the enemy in the direction and speed specified in with the strafe.
+
+| Events |                                |
+| ------ | ------------------------------ |
+| Zenith | Sends when owner passes player |
+
+## SwoopAtPlayer
+
+Will make the actor fly towards the player until it reaches a certain range
+and then turn around.
+
+| Events |                                   |
+| ------ | --------------------------------- |
+| Zenith | Sends when the enemy turns around |
