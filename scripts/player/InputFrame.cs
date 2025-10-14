@@ -1,3 +1,5 @@
+using Godot;
+
 public class InputFrame
 {
   public InputPoll Previous { get; private set; }
@@ -7,6 +9,11 @@ public class InputFrame
   {
     Previous = previous;
     Current = current;
+  }
+
+  public Vector2 GetMovementVector()
+  {
+    return Current.GetInputVector();
   }
 
   public bool GetInput(InputType inputType)

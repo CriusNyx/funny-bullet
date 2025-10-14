@@ -17,8 +17,6 @@ public partial class DebugEnemy : Character
     base._Process(delta);
   }
 
-  public override void OnBehaviorEvent(BehaviorEvent e, Behavior sender) { }
-
   public override void OnLeaveSafeBounds()
   {
     GD.Print("Leaving safe bounds");

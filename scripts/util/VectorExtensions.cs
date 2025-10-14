@@ -17,4 +17,11 @@ public static class VectorExtensions
     var half = vec / 2f;
     return point.X >= -half.X && point.X <= half.X && point.Y >= -half.Y && point.Y <= half.Y;
   }
+
+  public static Quaternion DirectionToUnitRotation(this Vector2 vec)
+  {
+    vec = vec.Normalized();
+    var theta = Mathf.Atan2(vec.Y, vec.X);
+    return Quaternion.FromEuler(new Vector3(0, 0, theta));
+  }
 }

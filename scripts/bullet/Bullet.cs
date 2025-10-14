@@ -27,6 +27,8 @@ public partial class Bullet : Node3D, IHandleHitboxEvents
     var offset = direction * spawn.speed * (float)delta;
     Position += offset;
 
+    Quaternion = direction.To2().DirectionToUnitRotation();
+
     timeAlive += delta;
 
     if (timeAlive > spawn.lifetime)

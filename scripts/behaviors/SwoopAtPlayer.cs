@@ -53,14 +53,6 @@ public partial class SwoopAtPlayer : Node, Behavior
 
     var pid = pidController?.Iterate(hostPosition, targetPosition, deltaTime) ?? Vector3.Zero;
 
-    DebugDraw3D.DrawBox(
-      targetPosition,
-      Quaternion.Identity,
-      Vector3.One * 0.5f,
-      is_box_centered: true,
-      duration: 1f
-    );
-
     velocity = velocity.MoveToward(pid, deltaTime * acceleration).SClamp(maxVelocity);
 
     if (this.GetActor() is Actor actor)
@@ -76,7 +68,7 @@ public partial class SwoopAtPlayer : Node, Behavior
 
     if (hasHitZenith)
     {
-      return (hostPosition - playerPosition).Normalized() * 200f;
+      return (hostPosition - playerPosition).Normalized() * 300f;
     }
     else
     {

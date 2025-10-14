@@ -19,7 +19,6 @@ public partial class Health : Node, Behavior
 
   public void Hurt()
   {
-    GD.Print("Hurt");
     health--;
     CheckDead();
   }
@@ -29,6 +28,7 @@ public partial class Health : Node, Behavior
     if (!isDead && health <= 0)
     {
       isDead = true;
+      GD.Print("Dead");
       this.BroadcastEvent(new DeathEvent());
     }
   }

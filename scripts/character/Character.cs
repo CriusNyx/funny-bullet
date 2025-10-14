@@ -1,4 +1,5 @@
 using System;
+using Godot;
 
 public abstract partial class Character : Actor
 {
@@ -44,4 +45,13 @@ public abstract partial class Character : Actor
   }
 
   public virtual void OnLeaveSafeBounds() { }
+
+  public override void OnBehaviorEvent(BehaviorEvent e, Behavior sender)
+  {
+    base.OnBehaviorEvent(e, sender);
+    if (e is DeathEvent de)
+    {
+      Kill();
+    }
+  }
 }

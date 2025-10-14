@@ -49,6 +49,11 @@ public static class Extensions
     return (value, other);
   }
 
+  public static U Transform<T, U>(this T value, Func<T, U> transformationFunc)
+  {
+    return transformationFunc(value);
+  }
+
   public static T TransformIf<T>(this T source, bool condition, Func<T, T> func)
   {
     if (condition)
@@ -64,6 +69,18 @@ public static class Extensions
     if (value == null)
     {
       GD.PushWarning("Expected value to not be null");
+    }
+    return value;
+  }
+
+  public static T? WarnIfNotNull<T>(this T? value)
+    where T : class
+  {
+    if (value != null)
+    {
+      GD.PushWarning(
+        $"Expected value {value} to be null, but is is {value.GetType().Name} instead."
+      );
     }
     return value;
   }
