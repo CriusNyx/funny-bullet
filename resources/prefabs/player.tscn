@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3xoeumsfbykp"]
+[gd_scene load_steps=11 format=3 uid="uid://d3xoeumsfbykp"]
 
 [ext_resource type="Script" uid="uid://sbken1o3ty2p" path="res://scripts/player/Player.cs" id="1_4dohe"]
 [ext_resource type="Texture2D" uid="uid://dd46wri5d1v3k" path="res://resources/prefabs/P_Sprite_complete.png" id="3_1txc5"]
 [ext_resource type="Script" uid="uid://kftrqwic5w1c" path="res://scripts/damage/Hurtbox.cs" id="3_r66lb"]
 [ext_resource type="Script" uid="uid://bctkemnccrat1" path="res://scripts/damage/Health.cs" id="4_1txc5"]
+[ext_resource type="Script" uid="uid://b4qc2vuihclcp" path="res://scripts/player/PlayerMovement.cs" id="5_kajg0"]
+[ext_resource type="Script" uid="uid://uqg4xsr10gay" path="res://scripts/behaviors/BulletPatterns.cs" id="6_vgi3v"]
+[ext_resource type="Script" uid="uid://dhtdiyv1tprpq" path="res://scripts/patterns/SpawnOne.cs" id="7_ug7am"]
+[ext_resource type="PackedScene" uid="uid://bx4rgw4n5qqw8" path="res://resources/prefabs/player_bullet.tscn" id="8_ug7am"]
+[ext_resource type="Script" uid="uid://drxy6jeo1t4jy" path="res://scripts/player/PlayerFireController.cs" id="9_ug7am"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_r66lb"]
 
@@ -27,3 +32,24 @@ vframes = 3
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_1txc5")
 metadata/_custom_type_script = "uid://bctkemnccrat1"
+
+[node name="PlayerMovement" type="Node" parent="."]
+script = ExtResource("5_kajg0")
+metadata/_custom_type_script = "uid://b4qc2vuihclcp"
+
+[node name="BulletPatterns" type="Node" parent="."]
+script = ExtResource("6_vgi3v")
+metadata/_custom_type_script = "uid://uqg4xsr10gay"
+
+[node name="player" type="Node" parent="BulletPatterns"]
+script = ExtResource("7_ug7am")
+speed = 30.0
+angle = 90.0
+lifetime = 15.0
+prefab = ExtResource("8_ug7am")
+metadata/_custom_type_script = "uid://dhtdiyv1tprpq"
+
+[node name="PlayerFireController" type="Node" parent="."]
+script = ExtResource("9_ug7am")
+FireRate = 20.0
+metadata/_custom_type_script = "uid://drxy6jeo1t4jy"

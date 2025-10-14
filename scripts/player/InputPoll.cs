@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 using Godot;
@@ -9,18 +10,21 @@ public enum InputType
   Down,
   Up,
   Fire,
+  Accept,
 }
 
 public class InputPoll
 {
-  private static Dictionary<InputType, Key> InputMap = new Dictionary<InputType, Key>()
-  {
-    { InputType.Left, Key.A },
-    { InputType.Right, Key.D },
-    { InputType.Down, Key.S },
-    { InputType.Up, Key.W },
-    { InputType.Fire, Key.Space },
-  };
+  private static (InputType type, Key key)[] InputMap =
+  [
+    (InputType.Left, Key.A),
+    (InputType.Right, Key.D),
+    (InputType.Down, Key.S),
+    (InputType.Up, Key.W),
+    (InputType.Fire, Key.Space),
+    (InputType.Accept, Key.E),
+    (InputType.Accept, Key.Space),
+  ];
 
   public readonly IReadOnlyDictionary<InputType, bool> Inputs = new Dictionary<InputType, bool>();
 
@@ -59,7 +63,7 @@ public class InputPoll
   public static InputPoll Empty()
   {
     var inputs = new Dictionary<InputType, bool>();
-    foreach (var type in InputMap.Keys)
+    foreach (var type in Enum.GetValues<InputType>())
     {
       inputs.Add(type, false);
     }
@@ -69,9 +73,16 @@ public class InputPoll
   public static InputPoll Current()
   {
     var inputs = new Dictionary<InputType, bool>();
+    foreach (var type in Enum.GetValues<InputType>())
+    {
+      inputs.Add(type, false);
+    }
     foreach (var (type, key) in InputMap)
     {
-      inputs.Add(type, Input.IsPhysicalKeyPressed(key));
+      if (Input.IsPhysicalKeyPressed(key))
+      {
+        inputs[type] = true;
+      }
     }
     return new InputPoll(inputs);
   }

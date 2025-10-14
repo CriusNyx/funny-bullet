@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using static GameStats;
 
 [GlobalClass]
 public partial class Player : Character
@@ -10,6 +8,7 @@ public partial class Player : Character
   [Export]
   public int MyInt;
   InputFrame input = InputFrame.Empty();
+  public InputFrame Input => input;
   static HashSet<Player> playerInstances = new HashSet<Player>();
   public static IReadOnlySet<Player> PlayerInstance => playerInstances;
   public static Player? Instance => playerInstances.FirstOrDefault();
@@ -33,10 +32,8 @@ public partial class Player : Character
 
   public override void _Process(double delta)
   {
-    base._Process(delta);
     input = InputFrame.Poll(input);
-
-    Position += input.Current.GetInputVector().To3() * (float)delta * PLAYER_SPEED;
+    base._Process(delta);
   }
 
   public override void OnBehaviorEvent(BehaviorEvent e, Behavior sender)

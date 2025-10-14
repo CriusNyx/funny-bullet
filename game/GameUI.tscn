@@ -1,0 +1,141 @@
+[gd_scene load_steps=6 format=3 uid="uid://c45cpd4kumsd5"]
+
+[ext_resource type="Script" uid="uid://bmwq5ifay0v0a" path="res://scripts/ui/GameUI.cs" id="1_edpjv"]
+[ext_resource type="Script" uid="uid://8kjrvn3fdwob" path="res://scripts/ui/DialogController.cs" id="2_6d26k"]
+[ext_resource type="Script" uid="uid://5hv4pjs1xcht" path="res://addons/richtext2/text_effects/anims/rte_fader.gd" id="2_y5ur5"]
+[ext_resource type="Script" uid="uid://b6mbstaftpedd" path="res://addons/richtext2/rich_text_animation.gd" id="4_vs3so"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_y5ur5"]
+resource_name = "fader"
+script = ExtResource("2_y5ur5")
+metadata/rt = 2454037025464
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_edpjv")
+metadata/_custom_type_script = "uid://bmwq5ifay0v0a"
+
+[node name="SafeSpace" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="DialogPanel" type="PanelContainer" parent="SafeSpace"]
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="SafeSpace/DialogPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SafeSpace/DialogPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LeftPortrait" type="TextureRect" parent="SafeSpace/DialogPanel/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+expand_mode = 3
+stretch_mode = 4
+
+[node name="DialogController" type="Control" parent="SafeSpace/DialogPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_6d26k")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SafeSpace/DialogPanel/MarginContainer/HBoxContainer/DialogController"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_effects = [SubResource("RichTextEffect_y5ur5")]
+script = ExtResource("4_vs3so")
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 30.0
+fade_out = false
+fade_in_speed = 10.0
+fade_out_speed = 120.0
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = ""
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 16
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = false
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+
+[node name="RightPortrait" type="TextureRect" parent="SafeSpace/DialogPanel/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+expand_mode = 3
+stretch_mode = 4

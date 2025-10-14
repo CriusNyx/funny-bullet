@@ -6,10 +6,8 @@ using Godot;
 /// </summary>
 public interface Behavior
 {
-  public void HostUpdate(Actor host, double deltaTime) { }
-
-  public void HostPhysicsUpdate(Actor host, double deltaTime) { }
-
+  void HostUpdate(Actor host, double deltaTime) { }
+  void HostPhysicsUpdate(Actor host, double deltaTime) { }
   void OnBehaviorEvent(BehaviorEvent e, Behavior sender) { }
 }
 

@@ -5,10 +5,10 @@ using Godot;
 public partial class FireParameters : Resource, DebugPrint
 {
   [Export]
-  public string? firePattern { get; private set; }
+  public string? firePattern { get; set; }
 
   [Export]
-  public bool atPlayer { get; private set; } = true;
+  public bool atPlayer { get; set; } = true;
 
   public IEnumerable<(string, object)> EnumerateFields()
   {

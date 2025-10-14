@@ -8,9 +8,6 @@ using Godot;
 [GlobalClass]
 public partial class BulletPatterns : Node, Behavior
 {
-  [Export]
-  public PackedScene? bullet;
-
   public Dictionary<string, BulletSpawn[]> patternsCache = new Dictionary<string, BulletSpawn[]>();
 
   public override void _Ready()
