@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dudrnwwsirh4"]
+
+[ext_resource type="Script" uid="uid://c57wawphk1c5g" path="res://scripts/level/Level.cs" id="1_ftvc3"]
+[ext_resource type="Script" uid="uid://bfl5dvw7u3wy5" path="res://scripts/dialog/MarkdownDialog.cs" id="2_qfrg3"]
+[ext_resource type="Texture2D" uid="uid://bmbgwc7cviei5" path="res://resources/textures/link_coffee.png" id="3_hdpoj"]
+[ext_resource type="Texture2D" uid="uid://b6cm5hbiko8q2" path="res://resources/prefabs/p_sprite.png" id="4_hdpoj"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Level" type="Node" parent="."]
+script = ExtResource("1_ftvc3")
+IsDone = true
+metadata/_custom_type_script = "uid://c57wawphk1c5g"
+
+[node name="MarkdownDialog" type="Node" parent="Level"]
+script = ExtResource("2_qfrg3")
+actorPortraits = Dictionary[String, Texture2D]({
+"Elise": ExtResource("4_hdpoj"),
+"Player": ExtResource("3_hdpoj")
+})
+filePath = "res://resources/dialog/Level1Dialog1.md"
+metadata/_custom_type_script = "uid://bfl5dvw7u3wy5"

@@ -1,6 +1,5 @@
 using System;
-using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 
@@ -18,10 +17,20 @@ public partial class DialogController : Control
   RichTextLabel dialogBox = null!;
   TaskCompletionSource taskCompletionSource = null!;
 
-  public Task PlayDialogContent(DialogContent content)
+  public Task PlayDialogContent(DialogContent content, Dictionary<string, string>? vars)
   {
-    if (content is DialogMessage message)
+    if (content is IDialogMessage message)
     {
+      var dict = new Godot.Collections.Dictionary<string, string>();
+      if (vars != null)
+      {
+        foreach (var (key, value) in vars)
+        {
+          dict.Add(key, value);
+        }
+      }
+
+      dialogBox.Set("context_state", dict);
       dialogBox.Call("set_bbcode", message.Message);
       dialogBox.Call("set_progress", 0);
       taskCompletionSource = new TaskCompletionSource();

@@ -1,11 +1,13 @@
 using Godot;
 
-[GlobalClass]
-public partial class DialogMessage : DialogContent
+public interface IDialogMessage
 {
-  [Export]
-  public int characterRate = 10;
+  public string Message { get; }
+}
 
+[GlobalClass]
+public partial class DialogMessage : Node, DialogContent, IDialogMessage
+{
   [Export(PropertyHint.MultilineText)]
-  public string Message = "";
+  public string Message { get; private set; } = "";
 }

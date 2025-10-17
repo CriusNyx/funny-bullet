@@ -4,9 +4,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulletHell", "BulletHell.cs
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-	Debug|Any CPU = Debug|Any CPU
-	ExportDebug|Any CPU = ExportDebug|Any CPU
-	ExportRelease|Any CPU = ExportRelease|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		ExportDebug|Any CPU = ExportDebug|Any CPU
+		ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3C7B3EFF-E568-4447-9C26-30D7F0BF4589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -15,5 +15,11 @@ Global
 		{3C7B3EFF-E568-4447-9C26-30D7F0BF4589}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{3C7B3EFF-E568-4447-9C26-30D7F0BF4589}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{3C7B3EFF-E568-4447-9C26-30D7F0BF4589}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{647855F3-D38D-4982-A3CC-BD917D22B8A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{647855F3-D38D-4982-A3CC-BD917D22B8A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{647855F3-D38D-4982-A3CC-BD917D22B8A9}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{647855F3-D38D-4982-A3CC-BD917D22B8A9}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{647855F3-D38D-4982-A3CC-BD917D22B8A9}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{647855F3-D38D-4982-A3CC-BD917D22B8A9}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

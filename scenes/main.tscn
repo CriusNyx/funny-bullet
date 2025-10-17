@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://gf2egdtjvkn8"]
+[gd_scene load_steps=20 format=3 uid="uid://gf2egdtjvkn8"]
 
 [ext_resource type="PackedScene" uid="uid://d3xoeumsfbykp" path="res://resources/prefabs/player.tscn" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://baj7jlp7b15u0" path="res://scripts/level/Wave.cs" id="2_tbgi4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://eg80xuqocy0v" path="res://resources/prefabs/bullet.tscn" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://c57wawphk1c5g" path="res://scripts/level/Level.cs" id="4_tbgi4"]
 [ext_resource type="Script" uid="uid://de0y5xjcwe8ii" path="res://scripts/dialog/Dialog.cs" id="5_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://bmbgwc7cviei5" path="res://resources/textures/link_coffee.png" id="6_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://dm6lgcowi1gnt" path="res://resources/prefabs/enemies/debug_enemy.tscn" id="6_o6xl0"]
 [ext_resource type="Script" uid="uid://1veuy4fyhgj4" path="res://scripts/spawn/Spawner.cs" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://c5uh44qadvk7p" path="res://scripts/dialog/DialogMessage.cs" id="6_trceg"]
@@ -157,6 +158,7 @@ metadata/_custom_type_script = "uid://c57wawphk1c5g"
 
 [node name="Dialog" type="Node" parent="Level"]
 script = ExtResource("5_eb6dy")
+texture = ExtResource("6_a8y0u")
 metadata/_custom_type_script = "uid://de0y5xjcwe8ii"
 
 [node name="DialogMessage" type="Node" parent="Level/Dialog"]

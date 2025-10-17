@@ -1,5 +1,4 @@
-using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 
@@ -26,12 +25,45 @@ public partial class GameUI : Control
     RightPortrait = FindChild(RIGHT_PORTRAIT_NAME).As<TextureRect>().NotNull();
   }
 
-  public async Task ShowDialog(Dialog dialog)
+  public void SetPortrait(PortraitSide side, Texture2D? texture, bool flipped)
+  {
+    LeftPortrait.Visible = false;
+    RightPortrait.Visible = false;
+
+    void SetTexture(TextureRect rect)
+    {
+      rect.Texture = texture;
+      rect.Visible = true;
+      rect.FlipH = flipped;
+    }
+
+    if (texture != null)
+    {
+      if (side == PortraitSide.Left)
+      {
+        SetTexture(LeftPortrait);
+      }
+      if (side == PortraitSide.Right)
+      {
+        SetTexture(RightPortrait);
+      }
+    }
+  }
+
+  public async Task ShowDialog(Dialog dialog, Dictionary<string, string>? vars = null)
+  {
+    await ShowDialogContent(dialog.GetContent(), vars);
+  }
+
+  public async Task ShowDialogContent(
+    IEnumerable<DialogContent> content,
+    Dictionary<string, string>? vars = null
+  )
   {
     DialogPanel.Visible = true;
-    foreach (var content in dialog.GetContent())
+    foreach (var value in content)
     {
-      await DialogController.PlayDialogContent(content);
+      await DialogController.PlayDialogContent(value, vars);
     }
     DialogPanel.Visible = false;
   }

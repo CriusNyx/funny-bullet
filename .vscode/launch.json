@@ -1,0 +1,13 @@
+{
+  "name": "Launch Project",
+  "type": "lldb",
+  "request": "launch",
+  "program": "${workspaceFolder}/bin/godot.linuxbsd.editor.dev.x86_64",
+  "args": ["--editor", "--path", "/home/rjr/Projects/Godot/funny-bullet/"],
+  "stopAtEntry": false,
+  "cwd": "${workspaceFolder}",
+  "environment": [],
+  "externalConsole": false,
+  "preLaunchTask": "build",
+  "configurations": []
+}
