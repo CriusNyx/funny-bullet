@@ -12,9 +12,9 @@ public static class DictionaryExtensions
     return default;
   }
 
-  public static Value Safe<Value>(this Value[] arr, int index)
+  public static Value Safe<Value>(this IReadOnlyList<Value> arr, int index)
   {
-    if (index >= 0 && index < arr.Length)
+    if (index >= 0 && index < arr.Count)
     {
       return arr[index];
     }

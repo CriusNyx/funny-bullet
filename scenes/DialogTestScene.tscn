@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dudrnwwsirh4"]
+
+[ext_resource type="Script" uid="uid://c57wawphk1c5g" path="res://scripts/level/Level.cs" id="1_ftvc3"]
+[ext_resource type="Script" uid="uid://c6bglhhmu1bc6" path="res://scripts/dialog/Dialog.cs" id="2_ftvc3"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Level" type="Node" parent="."]
+script = ExtResource("1_ftvc3")
+IsDone = true
+metadata/_custom_type_script = "uid://c57wawphk1c5g"
+
+[node name="Dialog" type="Node" parent="Level"]
+script = ExtResource("2_ftvc3")
+dialogFilePath = "res://resources/dialog/test_dialog.md"
+metadata/_custom_type_script = "uid://c6bglhhmu1bc6"

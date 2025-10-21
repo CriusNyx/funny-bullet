@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 
 public static class LinqExtensions
 {
@@ -17,7 +18,7 @@ public static class LinqExtensions
     }
   }
 
-  public static IEnumerable<(T, int)> WithIndex<T>(this IEnumerable<T> values)
+  public static IEnumerable<(T value, int index)> WithIndex<T>(this IEnumerable<T> values)
   {
     int index = 0;
     foreach (var value in values)
@@ -98,5 +99,95 @@ public static class LinqExtensions
   public static IEnumerable<T> Flatten<T>(this IEnumerable<IEnumerable<T>> source)
   {
     return source.Aggregate((x, y) => x.Concat(y));
+  }
+
+  public static IEnumerable<T> TakeWhile<T>(this IEnumerator<T> source, Func<T, bool> predicate)
+  {
+    while (source.MoveNext() && predicate(source.Current))
+    {
+      yield return source.Current;
+    }
+  }
+
+  public static IEnumerable<T> Rest<T>(this IEnumerator<T> source)
+  {
+    while (source.MoveNext())
+    {
+      yield return source.Current;
+    }
+  }
+
+  public static T Take<T>(this IEnumerator<T> source)
+  {
+    if (source.MoveNext())
+    {
+      return source.Current;
+    }
+    throw new InvalidOperationException("The enumerator has reached it's end.");
+  }
+
+  public static T? TakeSafe<T>(this IEnumerator<T> source)
+  {
+    if (source.MoveNext())
+    {
+      return source.Current;
+    }
+    return default;
+  }
+
+  public static (T a, T b) Take2<T>(this IEnumerable<T> source)
+  {
+    var enumerator = source.GetEnumerator();
+    var a = enumerator.Take();
+    var b = enumerator.Take();
+    return (a, b)!;
+  }
+
+  public static (T a, T b) Take2Safe<T>(this IEnumerable<T> source)
+  {
+    var enumerator = source.GetEnumerator();
+    var a = enumerator.TakeSafe();
+    var b = enumerator.TakeSafe();
+    return (a, b)!;
+  }
+
+  public static void InitializeDictionary<Key, Value>(
+    this IDictionary<Key, Value> dictionary,
+    Func<Value> initializer
+  )
+  {
+    foreach (var key in dictionary.Keys.ToArray())
+    {
+      if (dictionary[key] == null)
+      {
+        dictionary[key] = initializer();
+      }
+    }
+  }
+
+  public static T FirstOr<T>(this IEnumerable<T> source, Func<T, bool> predicate, T defaultReturn)
+  {
+    foreach (var element in source)
+    {
+      if (predicate(element))
+      {
+        return element;
+      }
+    }
+    return defaultReturn;
+  }
+
+  public static int IndexOf<T>(this IEnumerable<T> source, Func<T, bool> func)
+  {
+    int index = 0;
+    foreach (var element in source)
+    {
+      if (func(element))
+      {
+        return index;
+      }
+      index++;
+    }
+    return -1;
   }
 }

@@ -49,6 +49,21 @@ public static class Extensions
     return (value, other);
   }
 
+  public static (T, U, V) AndWith<T, U, V>(this (T, U) value, V other)
+  {
+    return (value.Item1, value.Item2, other);
+  }
+
+  public static (T, U, V, W) AndWith<T, U, V, W>(this (T, U, V) value, W other)
+  {
+    return (value.Item1, value.Item2, value.Item3, other);
+  }
+
+  public static (T, U, V, W, X) AndWith<T, U, V, W, X>(this (T, U, V, W) value, X other)
+  {
+    return (value.Item1, value.Item2, value.Item3, value.Item4, other);
+  }
+
   public static U Transform<T, U>(this T value, Func<T, U> transformationFunc)
   {
     return transformationFunc(value);
@@ -85,12 +100,12 @@ public static class Extensions
     return value;
   }
 
-  public static T NotNull<T>(this T? value)
+  public static T NotNull<T>(this T? value, string fieldName = null)
     where T : class
   {
     if (value is null)
     {
-      throw new NullReferenceException("Vaule was expected to not be null");
+      throw new NullReferenceException($"Vaule {fieldName} was expected to not be null");
     }
     return value;
   }
