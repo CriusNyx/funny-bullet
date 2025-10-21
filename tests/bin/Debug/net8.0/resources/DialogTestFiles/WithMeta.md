@@ -1,4 +1,0 @@
----
-variables: 
-  hello: World!
----
