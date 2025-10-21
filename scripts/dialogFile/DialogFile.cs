@@ -1,21 +1,20 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Markdig;
 using Markdig.Syntax;
 
-public class DialogFile
+public partial class DialogFile : DebugPrint
 {
-  public DialogMeta? meta;
-  public DialogFileSection[]? sections;
+  public DialogMeta? Meta => blocks?.FirstOrDefault(x => x is DialogMeta) as DialogMeta;
+  public Block[]? blocks = [];
 
-  private static DialogFileSection[] ParseSections(string source)
+  private static Block[] ParseSections(MarkdownDocument md, string source)
   {
-    var md = Markdown.Parse(source).AsEnumerable();
     var queue = new Queue<MarkdownObject>(md.ToArray());
-    List<DialogFileSection> sections = new List<DialogFileSection>();
+    List<Block> sections = new List<Block>();
     while (queue.TryDequeue(out var nextBlock))
     {
-      if (DialogFileSection.Parse(nextBlock, queue, source) is DialogFileSection section)
+      if (Block.Parse(nextBlock, queue, source) is Block section)
       {
         sections.Add(section);
       }
@@ -23,11 +22,21 @@ public class DialogFile
     return sections.ToArray();
   }
 
-  public static DialogFile Parse(string file)
+  public int GetBlockIndexWithLabel(string label)
   {
-    var docWithMeta = DocWithMeta.ParseString(file);
-    var meta = DialogMeta.Parse(file);
-    var sections = ParseSections(docWithMeta.Text ?? "");
-    return new DialogFile { meta = meta, sections = sections };
+    return this.blocks?.IndexOf(x => x is ActorBlock actorBlock && actorBlock.label == label) ?? -1;
   }
+
+  public static DialogFile Parse(string source)
+  {
+    var sections = ParseSections(Markdown.ParseWithFrontmatter(source), source);
+    return new DialogFile { blocks = sections };
+  }
+
+  public IEnumerable<(string, object)> EnumerateFields()
+  {
+    return [nameof(blocks).With(blocks)!];
+  }
+
+  public class Player { }
 }

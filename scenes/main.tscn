@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://gf2egdtjvkn8"]
+[gd_scene load_steps=19 format=3 uid="uid://gf2egdtjvkn8"]
 
 [ext_resource type="PackedScene" uid="uid://d3xoeumsfbykp" path="res://resources/prefabs/player.tscn" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://baj7jlp7b15u0" path="res://scripts/level/Wave.cs" id="2_tbgi4"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bmbgwc7cviei5" path="res://resources/textures/link_coffee.png" id="6_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://dm6lgcowi1gnt" path="res://resources/prefabs/enemies/debug_enemy.tscn" id="6_o6xl0"]
 [ext_resource type="Script" uid="uid://1veuy4fyhgj4" path="res://scripts/spawn/Spawner.cs" id="6_tefeu"]
-[ext_resource type="Script" uid="uid://c5uh44qadvk7p" path="res://scripts/dialog/DialogMessage.cs" id="6_trceg"]
 [ext_resource type="PackedScene" uid="uid://dbekhdsce05eu" path="res://resources/fire_behaviors/fire_on_zenith.tscn" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://dyuqf0k68gxlj" path="res://resources/movement_patterns/swoop_at_player.tscn" id="9_choun"]
 [ext_resource type="PackedScene" uid="uid://sb6vf36lxrmc" path="res://resources/movement_patterns/strafe_right.tscn" id="10_choun"]
@@ -160,18 +159,6 @@ metadata/_custom_type_script = "uid://c57wawphk1c5g"
 script = ExtResource("5_eb6dy")
 texture = ExtResource("6_a8y0u")
 metadata/_custom_type_script = "uid://de0y5xjcwe8ii"
-
-[node name="DialogMessage" type="Node" parent="Level/Dialog"]
-script = ExtResource("6_trceg")
-Message = "[p] This is my message [h]
-This is more message [h]
-[]"
-metadata/_custom_type_script = "uid://c5uh44qadvk7p"
-
-[node name="DialogMessage2" type="Node" parent="Level/Dialog"]
-script = ExtResource("6_trceg")
-Message = "[p] This is message ahhh 2 [h] []"
-metadata/_custom_type_script = "uid://c5uh44qadvk7p"
 
 [node name="Wave" type="Node" parent="Level"]
 script = ExtResource("2_tbgi4")

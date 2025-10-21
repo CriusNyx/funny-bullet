@@ -7,41 +7,16 @@ using Godot;
 public partial class DialogController : Control
 {
   const string PLAY_SPEED_FEILD = "play_speed";
-  const string BB_CODE_FIELD_NAME = "bbcode";
   const string IS_ANIMATION_HOLDING_METHOD = "is_anim_holding";
+  const string SET_BBCODE_METHOD = "set_bbcode";
   const string ADVANCE_METHOD = "advance";
   const float PLAY_SPEED = 30;
   const float PLAY_SPEED_FAST = 120;
   const string ANIMATION_FINISHED_SIGNAL = "anim_finished";
+  const string CONTEXT_STATE_FIELD = "context_state";
 
   RichTextLabel dialogBox = null!;
-  TaskCompletionSource taskCompletionSource = null!;
-
-  public Task PlayDialogContent(DialogContent content, Dictionary<string, string>? vars)
-  {
-    if (content is IDialogMessage message)
-    {
-      var dict = new Godot.Collections.Dictionary<string, string>();
-      if (vars != null)
-      {
-        foreach (var (key, value) in vars)
-        {
-          dict.Add(key, value);
-        }
-      }
-
-      dialogBox.Set("context_state", dict);
-      dialogBox.Call("set_bbcode", message.Message);
-      dialogBox.Call("set_progress", 0);
-      taskCompletionSource = new TaskCompletionSource();
-      return taskCompletionSource.Task;
-    }
-    else
-    {
-      Debug.WarnUnexpectedType(typeof(DialogContent), content);
-      throw new NotImplementedException();
-    }
-  }
+  public event Action OnMessageFinished;
 
   public override void _EnterTree()
   {
@@ -66,6 +41,25 @@ public partial class DialogController : Control
     base._Process(delta);
   }
 
+  public void SetVars(IReadOnlyDictionary<string, string> vars)
+  {
+    var dictionary = (Godot.Collections.Dictionary)dialogBox.Get(CONTEXT_STATE_FIELD);
+    dictionary.Clear();
+    foreach (var (key, value) in vars)
+    {
+      dictionary[key] = value;
+    }
+  }
+
+  public void PlayMessage(string message, bool appendH = true)
+  {
+    if (appendH)
+    {
+      message = $"[p] {message} [h] []";
+    }
+    dialogBox.Call(SET_BBCODE_METHOD, [message]);
+  }
+
   private void SetPlaySpeed(float value)
   {
     dialogBox.Set(PLAY_SPEED_FEILD, value);
@@ -83,6 +77,6 @@ public partial class DialogController : Control
 
   private void OnAnimationFinished()
   {
-    taskCompletionSource?.SetResult();
+    OnMessageFinished?.Invoke();
   }
 }

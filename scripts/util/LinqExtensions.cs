@@ -18,7 +18,7 @@ public static class LinqExtensions
     }
   }
 
-  public static IEnumerable<(T, int)> WithIndex<T>(this IEnumerable<T> values)
+  public static IEnumerable<(T value, int index)> WithIndex<T>(this IEnumerable<T> values)
   {
     int index = 0;
     foreach (var value in values)
@@ -149,5 +149,45 @@ public static class LinqExtensions
     var a = enumerator.TakeSafe();
     var b = enumerator.TakeSafe();
     return (a, b)!;
+  }
+
+  public static void InitializeDictionary<Key, Value>(
+    this IDictionary<Key, Value> dictionary,
+    Func<Value> initializer
+  )
+  {
+    foreach (var key in dictionary.Keys.ToArray())
+    {
+      if (dictionary[key] == null)
+      {
+        dictionary[key] = initializer();
+      }
+    }
+  }
+
+  public static T FirstOr<T>(this IEnumerable<T> source, Func<T, bool> predicate, T defaultReturn)
+  {
+    foreach (var element in source)
+    {
+      if (predicate(element))
+      {
+        return element;
+      }
+    }
+    return defaultReturn;
+  }
+
+  public static int IndexOf<T>(this IEnumerable<T> source, Func<T, bool> func)
+  {
+    int index = 0;
+    foreach (var element in source)
+    {
+      if (func(element))
+      {
+        return index;
+      }
+      index++;
+    }
+    return -1;
   }
 }

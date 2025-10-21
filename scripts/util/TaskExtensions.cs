@@ -41,3 +41,14 @@ public static class TaskExtensions
     });
   }
 }
+
+public static class TaskHelper
+{
+  public static Task<T> RunWithTimeout<T>(Func<T> func, int miliseconds)
+  {
+    var cancellationSource = new CancellationTokenSource();
+    var result = Task.Run(func, cancellationSource.Token);
+    cancellationSource.CancelAfter(miliseconds);
+    return result;
+  }
+}

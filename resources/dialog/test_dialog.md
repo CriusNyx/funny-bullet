@@ -5,7 +5,7 @@ actors:
   Dude2: 
     side: Right
     flipped: true
-vars: 
+variables: 
   wxs: "[w=0.1]"
   ws: "[w=0.25]"
   wm: "[w=0.5]"

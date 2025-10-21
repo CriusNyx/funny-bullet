@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
@@ -50,21 +51,19 @@ public partial class GameUI : Control
     }
   }
 
-  public async Task ShowDialog(Dialog dialog, Dictionary<string, string>? vars = null)
-  {
-    await ShowDialogContent(dialog.GetContent(), vars);
-  }
-
-  public async Task ShowDialogContent(
-    IEnumerable<DialogContent> content,
-    Dictionary<string, string>? vars = null
-  )
+  public void ShowDialogPanel()
   {
     DialogPanel.Visible = true;
-    foreach (var value in content)
-    {
-      await DialogController.PlayDialogContent(value, vars);
-    }
+  }
+
+  public void HideDialogPanel()
+  {
     DialogPanel.Visible = false;
+  }
+
+  public async Task ShowDialog(Dialog dialog, Dictionary<string, string>? vars = null)
+  {
+    throw new NotImplementedException();
+    // await ShowDialogContent(dialog.GetContent(), vars);
   }
 }

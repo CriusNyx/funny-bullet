@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "dgSpecHash": "0r6nspp8iODMMP+kOwO6/nWe3gSWJtXZGFJb4/+gxnc+a+9eEnNW3nlqQ2jnpLaGrmqtdfWwr3FwO9VSqlI3RQ==",
+  "success": true,
+  "projectFilePath": "/home/rjr/Projects/Godot/funny-bullet/tests/tests.csproj",
+  "expectedPackageFiles": [
+    "/home/rjr/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/deepequal/5.1.0/deepequal.5.1.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/fluentassertions/8.7.1/fluentassertions.8.7.1.nupkg.sha512",
+    "/home/rjr/.nuget/packages/godot.sourcegenerators/4.5.0/godot.sourcegenerators.4.5.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/godotsharp/4.5.0/godotsharp.4.5.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/godotsharpeditor/4.5.0/godotsharpeditor.4.5.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/markdig/0.42.0/markdig.0.42.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/microsoft.codecoverage/17.6.0/microsoft.codecoverage.17.6.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/microsoft.net.test.sdk/17.6.0/microsoft.net.test.sdk.17.6.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/microsoft.testplatform.objectmodel/17.6.0/microsoft.testplatform.objectmodel.17.6.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/microsoft.testplatform.testhost/17.6.0/microsoft.testplatform.testhost.17.6.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/netstandard.library/2.0.0/netstandard.library.2.0.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/home/rjr/.nuget/packages/nuget.frameworks/5.11.0/nuget.frameworks.5.11.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/nunit/3.13.3/nunit.3.13.3.nupkg.sha512",
+    "/home/rjr/.nuget/packages/nunit.analyzers/3.6.1/nunit.analyzers.3.6.1.nupkg.sha512",
+    "/home/rjr/.nuget/packages/nunit3testadapter/4.2.1/nunit3testadapter.4.2.1.nupkg.sha512",
+    "/home/rjr/.nuget/packages/system.reflection.metadata/1.6.0/system.reflection.metadata.1.6.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/yamldotnet/16.3.0/yamldotnet.16.3.0.nupkg.sha512",
+    "/home/rjr/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.20/microsoft.aspnetcore.app.ref.8.0.20.nupkg.sha512"
+  ],
+  "logs": []
+}
